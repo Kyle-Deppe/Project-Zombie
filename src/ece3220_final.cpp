@@ -8,6 +8,11 @@
 #include "Characters/Character.h"
 using namespace std;
 
+//Some Prototypes
+void runGame();
+void newGame();
+
+
 /*
  * In this method we can build the characters.
  * 		Build as follows: Character name( STRING Name, INT Health (0-100), INT Supplies (0-10), INT Luck (0-100) )
@@ -28,6 +33,7 @@ void setupCharacters( Character ** player1, Character ** player2 )
 	Character * DoctorRivera = new Character( "Dr. Rivera", 75, 10, 25 );
 		DoctorRivera->addStory( 0, "After escaping the University of Missouri, you hopped into your trusty Corvette and head on your journey towards safety" );
 		DoctorRivera->addStory( 5, "Story Arc #2 on turn 5." );
+
 	Character * lilPupper = new Character( "Lil' Pupper", 100, 0, 100 );
 
 
@@ -41,11 +47,70 @@ void setupCharacters( Character ** player1, Character ** player2 )
 
 }
 
-
-int main()
+void runGame()
 {
 
-	cout << "The Ultimate Final Project" << endl;
+	int state = 0;
+	/*
+	 * Game States
+	 * -1. Exit Game
+	 * 0. Main Menu
+	 * 1. Playing the Game
+	 */
+
+	int choice = -1;
+
+	//MAIN GAME LOOP!
+	while( state !=  -1 )
+	{
+		if( state == 0)
+		{
+
+			cout << "Welcome to the greatest game ever" << endl;
+			cout << "Select an Option: " << endl;
+			cout << "1. New Game" << endl;
+			cout << "2. Load Game" << endl;
+			cout << "3. Help" << endl;
+			cout << "4. Exit" << endl;
+
+			cin >> choice;
+			cin.ignore();
+
+			switch( choice )
+			{
+				case 1:
+					state = 1;
+					newGame();
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					state = -1;
+					break;
+				default:
+					cout << "That's not an option! Try again: " << endl;
+					break;
+			}
+		}
+
+		if( state == 1 )
+		{
+			cout << "TODO: Press Enter to exit..." << endl;
+			cin.ignore();
+			state = -1;
+		}
+
+	}
+
+	cout << "Thanks for playing!" << endl;
+
+}
+
+void newGame()
+{
+	cout << "Creating a new game!" << endl;
 
 	//Setup Characters
 	Character * p1 = NULL;
@@ -57,8 +122,18 @@ int main()
 	p1->printPlayerData();
 	p2->printPlayerData();
 
+	//Delete Characters
 	cout << "\nDeconstructors" << endl;
 	delete( p1 );
+	delete( p2 );
+}
+
+int main()
+{
+
+	cout << "The Ultimate Final Project" << endl;
+
+	runGame();
 
 	return 0;
 }
