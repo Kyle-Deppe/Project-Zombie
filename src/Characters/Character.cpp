@@ -5,22 +5,21 @@ Character::Character(int choice) {
 
 	if (choice == 1) {
 		name = "Dr. Rivera";
-		health = 75;
-		supplies = 10;
-		luck = 25;
-
+		health = 35 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 2) {
 		name = "Clark Kent";
-		health = 50;
-		supplies = 100;
-		luck = 10;
+		health = 35 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 3) {
 		name = "Smith Cooper";
-		health = 100;
-		supplies = 70;
-		luck = 30;
+		health = 35 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 4) {
 		// Lil Pupper
@@ -47,7 +46,7 @@ Character::~Character() {
 
 void Character::printPlayerData()
 {
-	cout << "\n" << name << "'s Data" << endl
+	cout << "\n" << name << "'s Stats" << endl
 			<< "Health: " << health << endl
 			<< "Supplies: " << supplies << endl
 			<< "Luck: " << luck << endl;

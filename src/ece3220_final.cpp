@@ -1,10 +1,11 @@
 //============================================================================
-// Name        : ECE 3220: Final Project
-// Author      : Joel Abshier, Kyle Depp, Tsiania Hughes
-// Version     : 0.0.1
+// Assignment		: ECE 3220: Final Project
+// Authors			: Joel Abshier, Kyle Deppe, Tsiania Hughes
 //============================================================================
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Characters/Character.h"
 using namespace std;
 
@@ -12,6 +13,7 @@ using namespace std;
 void setupCharacters(Character **, Character **);
 void runGame();
 void newGame(Character **, Character **);
+void displayInstructions();
 string mainMenuChoice(string &choiceString);
 string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
@@ -85,10 +87,9 @@ void runGame()
 				newGame(&player1, &player2);
 				break;
 			case 2:
+				displayInstructions();
 				break;
 			case 3:
-				break;
-			case 4:
 				state = -1;
 				break;
 			default:
@@ -113,7 +114,7 @@ void runGame()
 
 void newGame(Character ** player1, Character ** player2)
 {
-	cout << endl << "Creating a new game!" << endl;
+	cout << endl << "Creating a new game." << endl;
 
 	setupCharacters(player1, player2);
 
@@ -125,13 +126,24 @@ void newGame(Character ** player1, Character ** player2)
 	cout << "\nDeconstructors" << endl;
 }
 
+void displayInstructions() {
+	cout << endl << "Instructions:"
+		<< endl << "The world has been overrun by zombies. Last night a radio broadcast announced that"
+		<< endl << "there's a safe haven in San Diego, California. Now, all of the survivors in America"
+		<< endl << "are heading west. In the beginning the players will choose a character to be"
+		<< endl << "assigned health, supplies, and luck. During the game the players' decisions"
+		<< endl << "impact their stats, where decisions that match the character's personality"
+		<< endl << "tend to favorably increase stats the most."
+		<< endl << "Will you make it to San Diego?"
+		<< endl;
+}
+
 string mainMenuChoice(string &choiceString) {
 	cout << endl << "Welcome to Project Zombie"
 	<< endl << "Please select an option: "
-	<< endl << "1. New Game"
-	<< endl << "2. Load Game"
-	<< endl << "3. Help"
-	<< endl << "4. Exit"
+	<< endl << "1. Play Game"
+	<< endl << "2. See Instructions"
+	<< endl << "3. Exit"
 	<< endl << ">> ";
 
 	getline(cin, choiceString);
@@ -140,14 +152,12 @@ string mainMenuChoice(string &choiceString) {
 		(!choiceString._Equal("1"))
 		&& (!choiceString._Equal("2"))
 		&& (!choiceString._Equal("3"))
-		&& (!choiceString._Equal("4"))
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option:"
-		<< endl << "1. New Game"
-		<< endl << "2. Load Game"
-		<< endl << "3. Help"
-		<< endl << "4. Exit"
+		<< endl << "1. Play Game"
+		<< endl << "2. See Instructions"
+		<< endl << "3. Exit"
 		<< endl << ">> ";
 
 		getline(cin, choiceString);
@@ -214,7 +224,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 
 int main()
 {
-
+	srand(time(NULL));
 	cout << "PROJECT ZOMBIE" << endl;
 
 	runGame();
