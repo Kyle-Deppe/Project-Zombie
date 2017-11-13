@@ -137,19 +137,19 @@ void Player::turn1() {
 			<< endl << "2. Crow bar.";
 	}
 	else if (characterNumber == 2) {
-
+		cout << endl << "You are Clark Kent, a lawyer in New York City.";
 	}
 	else if (characterNumber == 3) {
-
+		cout << endl << "You are Dr. Rivera, an ingenious professor in Missouri.";
 	}
 	else if (characterNumber == 4) {
-
+		cout << endl << "You am pupper.";
 	}
 	else if (characterNumber == 5) {
-
+		cout << endl << "You are Abigail Willow, a student at Westhall Elementary.";
 	}
 	else if (characterNumber == 6) {
-
+		cout << endl << "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing."
 	}
 }
 
