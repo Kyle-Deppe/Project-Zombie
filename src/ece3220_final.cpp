@@ -6,7 +6,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Characters/Character.h"
+#include "Character.h"
+#include "Encounter.h"
 #include "Exceptions.h"
 
 using namespace std;
@@ -36,6 +37,8 @@ void setupCharacters(Player ** player1, Player ** player2)
 	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
 	characterPlayer2 = stoi(choiceString);
 
+
+
 	Player *NewPlayer1 = new Player(characterPlayer1);
 	Player *NewPlayer2 = new Player(characterPlayer2);
 
@@ -49,7 +52,9 @@ void runGame()
 	string choiceString = "0";
 	int gameState = 0;
 	int menuChoice = 0;
+
 	Player *player1 = NULL, *player2 = NULL;
+	EncounterList * encounters = new EncounterList();
 
 	while ( gameState != -1 )
 	{
@@ -87,7 +92,8 @@ void runGame()
 		//This is the playing game state of the game
 		else if ( gameState == 1 )
 		{
-			//This is
+			//This is where all the gameplay actually takes place
+			playGame( &player1, &player2 );
 		}
 		//Quitting state
 		else if ( gameState == 2 )
@@ -129,8 +135,8 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl << "                 XXXXX.....XX      \\#########/\\;;;;;;,, /      XX.....XXXXX";
 	cout << endl << "                X |......XX%,.@      \\######/%;\\;;;;, /      @#%,XX......| X";
 	cout << endl << "                X |.....X  @#%,.@     |######%%;;;;,.|     @#%,.@     X.....| X";
-	cout << endl << "                X  \...X     @#%,.@    |# # # % ; ; ;,|   @#%,.@       X.../  X";
-	cout << endl << "                 X# \.X        @#%,.@                  @#%,.@           X./  #";
+	cout << endl << "                X  \...X     @#%,.@    |# # # % ; ; ;,|   @#%,.@       X..\./  X";
+	cout << endl << "                 X# \.X        @#%,.@                  @#%,.@           X\./  #";
 	cout << endl << "                  ##  X          @#%,.@              @#%,.@             X   #";
 	cout << endl << "                , \"# #X            @#%, .@          @#%, .@            X ##";
 	cout << endl << "                   `###X             @#%,.@      @#%,.@             ####'";
@@ -159,7 +165,7 @@ void playGame(Player **player1, Player **player2)
 
 	cout << endl << endl;
 
-	cout << endl << "<PLAYER 1>";
+	/*cout << endl << "<PLAYER 1>";
 	(**player1).turn1();
 	(**player1).addChoice(choice());
 	if ((**player1).isLost() == 1) {
@@ -374,6 +380,9 @@ void playGame(Player **player1, Player **player2)
 	// Stories for when the character wins
 	(**player1).displayEpilogue();
 	(**player2).displayEpilogue();
+
+	*/
+
 }
 
 void displayInstructions() {
@@ -388,7 +397,7 @@ void displayInstructions() {
 		<< endl;
 }
 
-int choice() {
+/*int choice() {
 	string choiceString = "";
 	int choice = 0;
 
@@ -447,7 +456,7 @@ int choice() {
 
 	cout << endl;
 	return choice;
-}
+}*/
 
 string mainMenuChoice(string &choiceString) throw (bad_input) {
 	cout << endl << "Please select an option: "
@@ -460,7 +469,7 @@ string mainMenuChoice(string &choiceString) throw (bad_input) {
 
 	if( (choiceString != "1") || (choiceString != "2") || (choiceString != "3") )
 	{
-		throw bad_input;
+		throw new bad_input();
 	}
 
 	return choiceString;
@@ -496,6 +505,7 @@ string player1CharacterChoice(string &choiceString) {
 
 	getline(cin, choiceString);
 
+	/*
 	while (
 		(!choiceString._Equal("1"))
 		&& (!choiceString._Equal("2"))
@@ -516,7 +526,7 @@ string player1CharacterChoice(string &choiceString) {
 
 		getline(cin, choiceString);
 	}
-
+*/
 	return choiceString;
 }
 
@@ -532,6 +542,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 
 	getline(cin, choiceString);
 
+	/*
 	while (
 		(
 		(!choiceString._Equal("1"))
@@ -555,7 +566,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
-	}
+	}*/
 
 	return choiceString;
 }

@@ -21,6 +21,7 @@ protected:
 public:
 	// Character();
 	Character(int choice);
+	Character( string _name, int _health, int _supplies, int _luck );
 	virtual ~Character();
 
 	void printPlayerData();
@@ -69,4 +70,15 @@ public:
 	void displayEpilogue();
 };
 
+class CharacterList
+{
+	private:
+		vector <Character> list;
+		void setupCharacters();
+	protected:
+	public:
+		CharacterList();
+};
+
 #endif /* CHARACTERS_CHARACTER_H_ */
+

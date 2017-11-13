@@ -1,7 +1,7 @@
 #include "Character.h"
 
 Character::Character(int choice) {
-
+/*
 	if (choice == 1) {
 		name = "Arnold";				// Arnold Cooper
 		health = 50 + (rand() % 41);
@@ -37,7 +37,15 @@ Character::Character(int choice) {
 		health = 50 + (rand() % 41);
 		supplies = 35 + (rand() % 41);
 		luck = 35 + (rand() % 41);
-	}
+	}*/
+}
+
+Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
+	cout << _name << " constructor" << endl;
+	name = _name;
+	health = _health;
+	supplies = _supplies;
+	luck = _luck;
 }
 
 Character::~Character()
@@ -83,14 +91,18 @@ void Character::showStory( int turnNumber )
 	cout << "NO STORY found for this turn for " << name << endl;
 }
 
-void Character::addHealth(int number) {
-	if ((health + number) < 0) {
+void Character::addHealth(int number)
+{
+	if ((health + number) < 0)
+	{
 		health = 0;
 	}
-	else if ((health + number) > 100) {
+	else if ((health + number) > 100)
+	{
 		health = 100;
 	}
-	else {
+	else
+	{
 		health = health + number;
 	}
 }
@@ -125,7 +137,46 @@ void Character::addStory( int turn, string story )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Player::Player(int choice) : Character(choice) {
+
+CharacterList::CharacterList()
+{
+	setupCharacters();
+}
+
+void CharacterList::setupCharacters()
+{
+	//Here is where we can write all of the charcter information, and we'll only have to do it once
+
+	//Basic constructor calling. The one you setup is totally cool too.
+	Character * arnoldCooper = new Character( "Arnold", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	//Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	//Character * drRivera = new Character( "Louis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	//Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	//Character * abigailWillow = new Character( "Abigail", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	//Character * darwinArnold = new Character( "Darwin", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+
+	//Basically, right here we can add story elements into the game.
+	/*
+	 * FORMAT:
+	 * (name).addStory( TURN_NUMBER, STORY );
+	 *
+	 * HERE'S THE IMPORTANT THIS:
+	 * 	Not every turn needs a story. These are the unique story elements for each character, but each encounter also includes some story specific
+	 * 	to that encounter.
+	 */
+	arnoldCooper->addStory(1, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
+			"as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
+			" keeing in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to also bring a:"
+			"\n1. Pistol with Ammunition"
+			"\n2. Crow Bar"
+			);
+	arnoldCooper->addStory(10, "A story for turn 10");
+
+}
+
+
+/*Player::Player(int choice) : Character(choice)
+{
 	characterNumber = choice;
 };
 
@@ -376,3 +427,4 @@ void Player::displayEpilogue() {
 
 	}
 }
+*/
