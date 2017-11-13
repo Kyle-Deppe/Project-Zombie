@@ -72,6 +72,40 @@ int Character::getTurn()
 	return turnNumber;
 }
 
+void Character::addHealth(int number) {
+	if ((health + number) < 0) {
+		health = 0;
+	}
+	else if ((health + number) > 100) {
+		health = 100;
+	}
+	else {
+		health = health + number;
+	}
+}
+void Character::addSupplies(int number) {
+	if ((supplies + number) < 0) {
+		supplies = 0;
+	}
+	else if ((supplies + number) > 100) {
+		supplies = 100;
+	}
+	else {
+		supplies = supplies + number;
+	}
+}
+void Character::addLuck(int number) {
+	if ((luck + number) < 0) {
+		luck = 0;
+	}
+	else if ((luck + number) > 100) {
+		luck = 100;
+	}
+	else {
+		luck = luck + number;
+	}
+}
+
 void Character::addStory( int turn, string story )
 {
 	cout << "Adding Story to " << name << endl;

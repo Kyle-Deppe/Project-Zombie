@@ -84,8 +84,6 @@ void runGame()
 		}
 	}
 
-	cout << endl << endl << "EXITING PROJECT ZOMBIE" << endl;
-
 	// Free the allocated memory.
 	delete(player1);
 	delete(player2);
@@ -201,10 +199,17 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 
 int main()
 {
+	string buffer = "";
+	
 	srand(time(NULL));
 	cout << "PROJECT ZOMBIE" << endl;
 
 	runGame();
 
-	return 0;
+	cout << endl << endl << "Press <ENTER> to exit.";
+	getline(cin, buffer);
+
+	cout << endl << endl << "EXITING PROJECT ZOMBIE" << endl;
+
+	return EXIT_SUCCESS;
 }

@@ -25,7 +25,7 @@ class Character {
 		std::map<int, string> mainStory;
 
 	public:
-		Character();
+		// Character();
 		Character(int choice);
 		Character( string _name, int _health, int _supplies, int _luck );
 		virtual ~Character();
@@ -37,9 +37,9 @@ class Character {
 		int getSupplies();
 		int getTurn();
 
-		void changeHealth( int damage );
-		void changeSupplies( int supplies );
-		void changeLuck( int luck );
+		void addHealth( int number );		// Enter a negative number for subtraction.
+		void addSupplies( int number );
+		void addLuck( int number );
 		void nextTurn() { --turnNumber; }
 
 		void addStory( int turn, string story );
