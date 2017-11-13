@@ -88,7 +88,7 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl << "<PLAYER 2>";
 	(**player2).printPlayerData();
 
-	cout << endl << "Press <ENTER> to initiate Project Zombie.";
+	cout << endl << "*****Press <ENTER> to initiate Project Zombie*****";
 	getline(cin, buffer);
 
 	cout << endl << "TYPE <Q> TO QUIT." << endl;;
@@ -100,10 +100,13 @@ void playGame(Player **player1, Player **player2) {
 	cout << endl << "<PLAYER 1>";
 	(**player1).turn1();
 	(**player1).addChoice(choice());
-	if ((**player1).getLastChoice() == 3) {
+	if ((**player1).isLost() == 1) {
+		// We need to write what happens when a player loses.
+		// (**player1).displayEpilogue();
+		// (**player2).displayEpilogue();
 		return;
 	}
-	if ((**player1).isLost() == 1) {
+	if ((**player1).getLastChoice() == 3) {
 		return;
 	}
 
@@ -306,6 +309,7 @@ void playGame(Player **player1, Player **player2) {
 		return;
 	}
 
+	// Stories for when the character wins
 	(**player1).displayEpilogue();
 	(**player2).displayEpilogue();
 }
@@ -361,7 +365,7 @@ int choice() {
 			}
 
 			if (
-				  (choiceString._Equal("Y"))
+				(choiceString._Equal("Y"))
 				| (choiceString._Equal("y"))
 				| (choiceString._Equal("Yes"))
 				| (choiceString._Equal("yes"))
@@ -414,6 +418,10 @@ string player1CharacterChoice(string &choiceString) {
 	cout << endl << "Please select a character:"
 		<< endl << "1. Arnold Cooper - Military"
 		<< endl << "2. Clark Kent - Lawyer"
+		// << endl << "3. Dr. Rivera - Ingenious Professor"
+		// << endl << "4. Lil Pupper - Am Pupper"
+		// << endl << "5. Abigail Willow - Elementary Student"
+		// << endl << "6. Darwin Arnold - Survivalist"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
@@ -421,11 +429,19 @@ string player1CharacterChoice(string &choiceString) {
 	while (
 		(!choiceString._Equal("1"))
 		&& (!choiceString._Equal("2"))
+		// && (!choiceString._Equal("3"))
+		// && (!choiceString._Equal("4"))
+		// && (!choiceString._Equal("5"))
+		// && (!choiceString._Equal("6"))
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option:"
 			<< endl << "1. Arnold Cooper - Military"
 			<< endl << "2. Clark Kent - Lawyer"
+			// << endl << "3. Dr. Rivera - Ingenious Professor"
+			// << endl << "4. Lil Pupper - Am Pupper"
+			// << endl << "5. Abigail Willow - Elementary Student"
+			// << endl << "6. Darwin Arnold - Survivalist"
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
@@ -438,6 +454,10 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 	cout << endl << "Please select a character:"
 		<< endl << "1. Arnold Cooper - Military"
 		<< endl << "2. Clark Kent - Lawyer"
+		// << endl << "3. Dr. Rivera - Ingenious Professor"
+		// << endl << "4. Lil Pupper - Am Pupper"
+		// << endl << "5. Abigail Willow - Elementary Student"
+		// << endl << "6. Darwin Arnold - Survivalist"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
@@ -446,6 +466,10 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 		(
 		(!choiceString._Equal("1"))
 			&& (!choiceString._Equal("2"))
+			// && (!choiceString._Equal("3"))
+			// && (!choiceString._Equal("4"))
+			// && (!choiceString._Equal("5"))
+			// && (!choiceString._Equal("6"))
 			)
 		|
 		(stoi(choiceString) == characterPlayer1)
@@ -454,6 +478,10 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"
 			<< endl << "1. Arnold Cooper - Military"
 			<< endl << "2. Clark Kent - Lawyer"
+			// << endl << "3. Dr. Rivera - Ingenious Professor"
+			// << endl << "4. Lil Pupper - Am Pupper"
+			// << endl << "5. Abigail Willow - Elementary Student"
+			// << endl << "6. Darwin Arnold - Survivalist"
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
@@ -462,7 +490,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 	return choiceString;
 }
 
-int main()
+int main(void)
 {
 	string buffer = "";
 

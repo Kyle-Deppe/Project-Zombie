@@ -149,7 +149,7 @@ void Player::turn1() {
 		cout << endl << "You are Abigail Willow, a student at Westhall Elementary.";
 	}
 	else if (characterNumber == 6) {
-		cout << endl << "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing."
+		cout << endl << "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing.";
 	}
 }
 

@@ -18,7 +18,7 @@ protected:
 	int supplies;	//A number between 0-100
 	int luck;		//A number between 0-100 that increases the likelyhood of passing checks
 	std::map<int, string> mainStory;		// I didn't use this. It might be useful but it seems like we can just hard code our stories.
-
+											// (See Character.cpp
 public:
 	// Character();
 	Character(int choice);
