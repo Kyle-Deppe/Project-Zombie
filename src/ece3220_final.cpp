@@ -37,27 +37,19 @@ void setupCharacters(Character ** player1, Character ** player2)
 	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
 	characterPlayer2 = stoi(choiceString);
 
-	/*
-	 * Setup the Doctor Rivera Character
-	 * 		Build as follows: Name, Health, Supplies, Luck
-	 * Add story elements to appear on turns.
-	 * 		Build as follows: .addStory( INT turnNum, STRING story )l
-	 */
+	Character *Player1 = new Character(characterPlayer1);
+	Character *Player2 = new Character(characterPlayer2);
 
+	/*
 	Character * DoctorRivera = new Character("Dr. Rivera", 75, 10, 25);
 	DoctorRivera->addStory(0, "After escaping the University of Missouri, you hopped into your trusty Corvette and head on your journey towards safety");
 	DoctorRivera->addStory(5, "Story Arc #2 on turn 5.");
 
 	Character * lilPupper = new Character("Lil' Pupper", 100, 0, 100);
 
-
-	/*
-	 * TODO: Do the selection of characters in here
-	 */
-
-	 //THIS IS TEMPORARY
-	*player1 = DoctorRivera;
-	*player2 = lilPupper;
+	Add story elements to appear on turns.
+	Build as follows: .addStory( INT turnNum, STRING story )
+	*/
 
 }
 
