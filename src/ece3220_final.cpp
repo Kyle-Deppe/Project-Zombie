@@ -16,6 +16,8 @@ void runGame();
 void newGame(Player **, Player **);
 void playGame(Player **, Player **);
 void displayInstructions();
+
+int choice();
 string mainMenuChoice(string &choiceString);
 string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
@@ -94,120 +96,164 @@ void runGame()
 
 void newGame(Player ** player1, Player ** player2)
 {
+	string buffer = "";
 	cout << endl << "Creating a new game..." << endl;
 
 	setupCharacters(player1, player2);
 
-	cout << endl << "<PLAYER 1>";
+	cout << endl << endl << endl << "<PLAYER 1>";
 	(**player1).printPlayerData();
 	cout << endl << "<PLAYER 2>";
 	(**player2).printPlayerData();
+
+	cout << endl << "Press <ENTER> to initiate Project Zombie.";
+	getline(cin, buffer);
 }
 
 void playGame(Player **player1, Player **player2) {
-	while (1) {
-		(**player1).turn1();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn1();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
+	cout << endl << endl;
 
-
-		(**player1).turn2();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn2();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn3();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn3();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn4();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn4();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn5();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn5();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn6();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn6();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn7();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn7();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn8();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn8();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn9();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn9();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-
-		(**player1).turn10();
-		if ((**player1).isLost() == 1) {
-			break;
-		}
-		(**player2).turn10();
-		if ((**player2).isLost() == 2) {
-			break;
-		}
-
-		(**player1).displayEpilogue();
-		(**player2).displayEpilogue();
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn1();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
 	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn1();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn2();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn2();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn3();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn3();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn4();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn4();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn5();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn5();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn6();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn6();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn7();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn7();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn8();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn8();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn9();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn9();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+
+	cout << endl << "<PLAYER 1>";
+	(**player1).turn10();
+	(**player1).addChoice(choice());
+	if ((**player1).isLost() == 1) {
+		return;
+	}
+	cout << endl << "<PLAYER 2>";
+	(**player2).turn10();
+	(**player1).addChoice(choice());
+	if ((**player2).isLost() == 1) {
+		return;
+	}
+
+	(**player1).displayEpilogue();
+	(**player2).displayEpilogue();
 }
 
 void displayInstructions() {
@@ -220,6 +266,23 @@ void displayInstructions() {
 		<< endl << "tend to favorably increase stats the most. The game ends when a player's health has"
 		<< endl << "reached 0 or they both get to San Diego."
 		<< endl;
+}
+
+int choice() {
+	string choiceString = "";
+	int choice = 0;
+
+	cout << endl << ">> ";
+	getline(cin, choiceString);
+
+	while ((!choiceString._Equal("1")) && (!choiceString._Equal("2"))) {
+		cout  << "Invalid choice. Select a choice by entering <1> or <2>" << endl << ">> ";
+		getline(cin, choiceString);
+	}
+
+	choice = stoi(choiceString);
+
+	return choice;
 }
 
 string mainMenuChoice(string &choiceString) {

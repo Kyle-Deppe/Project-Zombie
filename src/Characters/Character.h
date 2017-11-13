@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -41,12 +42,15 @@ public:
 class Player : public Character {
 private:
 	int characterNumber;
+	int currentChoice;
+	vector<int> prevChoices;
 	bool loseGame = 0;
-	int *prevChoices;
 protected:
 public:
 	Player(int choice);
+
 	bool isLost() { return loseGame; }
+	void addChoice(int newChoice) { prevChoices.push_back(newChoice); }
 
 	void turn1();
 	void turn2();

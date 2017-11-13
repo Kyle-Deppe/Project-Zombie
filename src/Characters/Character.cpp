@@ -117,12 +117,11 @@ void Character::addStory( int turn, string story )
 
 Player::Player(int choice) : Character(choice) {
 	characterNumber = choice;
-	prevChoices = NULL;
 };
 
 void Player::turn1() {
 	if (characterNumber == 1) {
-
+		cout << endl << "You are Arnold Cooper, a member of the United States Marines. Sitting in your chair...";
 	}
 }
 
@@ -162,6 +161,6 @@ void Player::turn10() {
 
 }
 
-void displayEpilogue() {
+void Player::displayEpilogue() {
 
 }
