@@ -87,13 +87,35 @@ void newGame(Player ** player1, Player ** player2)
 	(**player1).printPlayerData();
 	cout << endl << "<PLAYER 2>";
 	(**player2).printPlayerData();
-	
-	cout << endl << "////////////////////////////////////////////////////////";
-	cout << endl << "/////   Press <ENTER> to initiate Project Zombie   /////";
-	cout << endl << "////////////////////////////////////////////////////////";
+
+	cout << endl << endl << endl << "                  ////////////////////////////////////////////////////////";
+	cout << endl << "                  /////   Press <ENTER> to initiate Project Zombie   /////";
+	cout << endl << "                  ////////////////////////////////////////////////////////";
 	getline(cin, buffer);
 
-	cout << endl << "TYPE <Q> TO QUIT." << endl;;
+	cout << endl << endl << "                	              .~#########%%;~.";
+	cout << endl << "                                     /############%%;`\\";
+	cout << endl << "                                    /######/~\\/~\\%%;,;,\\";
+	cout << endl << "                                   |#######\\    /;;;;.,.|";
+	cout << endl << "                                   |#########\\/%;;;;;.,.|";
+	cout << endl << "                          XX       |##/~~\\####%;;;/~~\\;,|       XX";
+	cout << endl << "                        XX..X      |#|  o  \\##%;/  o  |.|      X..XX";
+	cout << endl << "                      XX.....X     |##\\____/##%;\\____/.,|     X.....XX";
+	cout << endl << "                 XXXXX.....XX      \\#########/\\;;;;;;,, /      XX.....XXXXX";
+	cout << endl << "                X |......XX%,.@      \\######/%;\\;;;;, /      @#%,XX......| X";
+	cout << endl << "                X |.....X  @#%,.@     |######%%;;;;,.|     @#%,.@     X.....| X";
+	cout << endl << "                X  \...X     @#%,.@    |# # # % ; ; ;,|   @#%,.@       X.../  X";
+	cout << endl << "                 X# \.X        @#%,.@                  @#%,.@           X./  #";
+	cout << endl << "                  ##  X          @#%,.@              @#%,.@             X   #";
+	cout << endl << "                , \"# #X            @#%, .@          @#%, .@            X ##";
+	cout << endl << "                   `###X             @#%,.@      @#%,.@             ####'";
+	cout << endl << "                  . ' ###              @#%.,@  @#%,.@              ###`";
+	cout << "                    . "; "                @#%.@#%,.@                ;\"` ' .";
+	cout << endl << "                      '                    @#%,.@                   ,.";
+	cout << endl << "                          ` ,            @#%,.@  @@                `";
+	cout << endl << "                                          @@@  @@@ ";
+
+	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
 }
 
 void playGame(Player **player1, Player **player2) {
@@ -324,7 +346,7 @@ void displayInstructions() {
 		<< endl << "assigned health, supplies, and luck. During the game the players' decisions"
 		<< endl << "impact their stats, where decisions that match the character's personality"
 		<< endl << "tend to favorably increase stats the most. The game ends when a player's health has"
-		<< endl << "reached 0 or they both get to San Diego."
+		<< endl << "reached 0 or both players get to San Diego."
 		<< endl;
 }
 
@@ -473,8 +495,8 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 			// && (!choiceString._Equal("5"))
 			// && (!choiceString._Equal("6"))
 			)
-		 |
-		 (choiceString._Equal(to_string(characterPlayer1)))
+		|
+		(choiceString._Equal(to_string(characterPlayer1)))
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"

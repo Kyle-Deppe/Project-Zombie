@@ -13,12 +13,12 @@ using namespace std;
 class Character {
 protected:
 	string name;
-	int turnNumber = 10;
+	int turnNumber = 1;
 	int health;		//A number between 0-100
 	int supplies;	//A number between 0-100
 	int luck;		//A number between 0-100 that increases the likelyhood of passing checks
 	std::map<int, string> mainStory;		// I didn't use this. It might be useful but it seems like we can just hard code our stories.
-											// (See Character.cpp
+											// (See Character.cpp)
 public:
 	// Character();
 	Character(int choice);
@@ -34,7 +34,7 @@ public:
 	void addHealth(int number);				// Input a negative number for subtraction. Auto sets to 0 or 100 for extreme values.
 	void addSupplies(int number);
 	void addLuck(int number);
-	void nextTurn() { --turnNumber; }
+	void nextTurn() { ++turnNumber; }
 
 	void addStory(int turn, string story);
 };
