@@ -9,8 +9,10 @@
 using namespace std;
 
 //Some Prototypes
+void setupCharacters(Character **, Character **);
 void runGame();
 void newGame();
+string mainMenuChoice(string &choiceString);
 
 
 /*
@@ -51,6 +53,9 @@ void runGame()
 {
 
 	int state = 0;
+	int choice = 0;
+	string choiceString = "-1";
+
 	/*
 	 * Game States
 	 * -1. Exit Game
@@ -58,23 +63,22 @@ void runGame()
 	 * 1. Playing the Game
 	 */
 
-	int choice = -1;
-
 	//MAIN GAME LOOP!
 	while( state !=  -1 )
 	{
 		if( state == 0)
 		{
 
-			cout << "Welcome to the greatest game ever" << endl;
-			cout << "Select an Option: " << endl;
+			cout << endl << "Welcome to Project Zombie" << endl;
+			cout << "Please select an option: " << endl;
 			cout << "1. New Game" << endl;
 			cout << "2. Load Game" << endl;
 			cout << "3. Help" << endl;
 			cout << "4. Exit" << endl;
+			cout << "> ";
 
-			cin >> choice;
-			cin.ignore();
+			choiceString = mainMenuChoice(choiceString);
+			choice = stoi(choiceString);
 
 			switch( choice )
 			{
@@ -128,10 +132,33 @@ void newGame()
 	delete( p2 );
 }
 
+string mainMenuChoice(string &choiceString) {
+	getline(cin, choiceString);
+	
+	while (
+		(!choiceString._Equal("1"))
+		&& (!choiceString._Equal("2"))
+		&& (!choiceString._Equal("3"))
+		&& (!choiceString._Equal("4"))
+		) {
+
+		cerr << endl << "Invalid choice. Select a valid option:" << endl;
+		cout << "1. New Game" << endl;
+		cout << "2. Load Game" << endl;
+		cout << "3. Help" << endl;
+		cout << "4. Exit" << endl;
+		cout << "> ";
+
+		getline(cin, choiceString);
+	}
+
+	return choiceString;
+}
+
 int main()
 {
 
-	cout << "The Ultimate Final Project" << endl;
+	cout << "PROJECT ZOMBIE" << endl;
 
 	runGame();
 
