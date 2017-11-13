@@ -11,7 +11,7 @@ using namespace std;
 //Some Prototypes
 void setupCharacters(Character **, Character **);
 void runGame();
-void newGame();
+void newGame(Character **, Character **);
 string mainMenuChoice(string &choiceString);
 string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
@@ -37,8 +37,11 @@ void setupCharacters(Character ** player1, Character ** player2)
 	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
 	characterPlayer2 = stoi(choiceString);
 
-	Character *Player1 = new Character(characterPlayer1);
-	Character *Player2 = new Character(characterPlayer2);
+	Character *NewPlayer1 = new Character(characterPlayer1);
+	Character *NewPlayer2 = new Character(characterPlayer2);
+
+	*player1 = NewPlayer1;
+	*player2 = NewPlayer2;
 
 	/*
 	Character * DoctorRivera = new Character("Dr. Rivera", 75, 10, 25);
@@ -50,15 +53,15 @@ void setupCharacters(Character ** player1, Character ** player2)
 	Add story elements to appear on turns.
 	Build as follows: .addStory( INT turnNum, STRING story )
 	*/
-
 }
 
 void runGame()
 {
-
 	int state = 0;
 	int menuChoice = 0;
 	string choiceString = "0";
+	Character * player1 = NULL;
+	Character * player2 = NULL;
 
 	/*
 	 * Game States
@@ -79,7 +82,7 @@ void runGame()
 			{
 			case 1:
 				state = 1;
-				newGame();
+				newGame(&player1, &player2);
 				break;
 			case 2:
 				break;
@@ -89,7 +92,7 @@ void runGame()
 				state = -1;
 				break;
 			default:
-				cout << "That's not an option! Try again: " << endl;
+				cout << endl << "Error. Try again." << endl;
 				break;
 			}
 		}
@@ -104,27 +107,22 @@ void runGame()
 	}
 
 	cout << "Thanks for playing!" << endl;
-
+	delete(player1);
+	delete(player2);
 }
 
-void newGame()
+void newGame(Character ** player1, Character ** player2)
 {
 	cout << endl << "Creating a new game!" << endl;
 
-	//Setup Characters
-	Character * p1 = NULL;
-	Character * p2 = NULL;
-
-	setupCharacters(&p1, &p2);
+	setupCharacters(player1, player2);
 
 	cout << "Print Character Data" << endl;
-	p1->printPlayerData();
-	p2->printPlayerData();
+	(**player1).printPlayerData();
+	(**player2).printPlayerData();
 
 	//Delete Characters
 	cout << "\nDeconstructors" << endl;
-	delete(p1);
-	delete(p2);
 }
 
 string mainMenuChoice(string &choiceString) {

@@ -1,10 +1,3 @@
-/*
- * Character.cpp
- *
- *  Created on: Nov 4, 2017
- *      Author: abshi
- */
-
 #include "Character.h"
 
 Character::Character(int choice) {
