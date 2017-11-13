@@ -13,7 +13,8 @@ void setupCharacters(Character **, Character **);
 void runGame();
 void newGame();
 string mainMenuChoice(string &choiceString);
-string characterChoice(string &choiceString);
+string player1CharacterChoice(string &choiceString);
+string player2CharacterChoice(string &choiceString, int characterPlayer1);
 
 
 /*
@@ -25,8 +26,16 @@ string characterChoice(string &choiceString);
 void setupCharacters(Character ** player1, Character ** player2)
 {
 	string choiceString = "0";
+	int characterPlayer1 = 0;
+	int characterPlayer2 = 0;
 
-	choiceString = characterChoice(choiceString);
+	cout << endl << "<PLAYER 1>";
+	choiceString = player1CharacterChoice(choiceString);
+	characterPlayer1 = stoi(choiceString);
+
+	cout << endl << "<PLAYER 2>";
+	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
+	characterPlayer2 = stoi(choiceString);
 
 	/*
 	 * Setup the Doctor Rivera Character
@@ -34,6 +43,7 @@ void setupCharacters(Character ** player1, Character ** player2)
 	 * Add story elements to appear on turns.
 	 * 		Build as follows: .addStory( INT turnNum, STRING story )l
 	 */
+
 	Character * DoctorRivera = new Character("Dr. Rivera", 75, 10, 25);
 	DoctorRivera->addStory(0, "After escaping the University of Missouri, you hopped into your trusty Corvette and head on your journey towards safety");
 	DoctorRivera->addStory(5, "Story Arc #2 on turn 5.");
@@ -107,7 +117,7 @@ void runGame()
 
 void newGame()
 {
-	cout << "Creating a new game!" << endl;
+	cout << endl << "Creating a new game!" << endl;
 
 	//Setup Characters
 	Character * p1 = NULL;
@@ -156,12 +166,11 @@ string mainMenuChoice(string &choiceString) {
 	return choiceString;
 }
 
-string characterChoice(string &choiceString) {
-	cout << endl << "Setting up Characters" << endl;
-	cout << endl << "Player 1: Please select a character:"
-		<< endl << "1. Dr. Rivera"
-		<< endl << "2. Lil Pupper"
-		<< endl << "3. Sergeant Smith"
+string player1CharacterChoice(string &choiceString) {
+	cout << endl << "Please select a character:"
+		<< endl << "1. Dr. Rivera - Ingenious Professor"
+		<< endl << "2. Clark Kent - Lawyer"
+		<< endl << "3. Smith Cooper - Military"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
@@ -173,9 +182,38 @@ string characterChoice(string &choiceString) {
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option:"
-			<< endl << "1. Dr. Rivera"
-			<< endl << "2. Lil Pupper"
-			<< endl << "3. Sergeant Smith"
+			<< endl << "1. Dr. Rivera - Ingenious Professor"
+			<< endl << "2. Clark Kent - Lawyer"
+			<< endl << "3. Smith Cooper - Military"
+			<< endl << ">> ";
+
+		getline(cin, choiceString);
+	}
+
+	return choiceString;
+}
+
+string player2CharacterChoice(string &choiceString, int characterPlayer1) {
+	cout << endl << "Please select a character:"
+		<< endl << "1. Dr. Rivera - Ingenious Professor"
+		<< endl << "2. Clark Kent - Lawyer"
+		<< endl << "3. Smith Cooper - Military"
+		<< endl << ">> ";
+
+	getline(cin, choiceString);
+
+	while (
+		((!choiceString._Equal("1"))
+		&& (!choiceString._Equal("2"))
+		&& (!choiceString._Equal("3")))
+		|
+		(stoi(choiceString) == characterPlayer1)
+		) {
+
+		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"
+			<< endl << "1. Dr. Rivera - Ingenious Professor"
+			<< endl << "2. Clark Kent - Lawyer"
+			<< endl << "3. Smith Cooper - Military"
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
