@@ -133,7 +133,7 @@ void Player::turn1() {
 			<< endl << "as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
 			<< endl << "keeping in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to"
 			<< endl << "also bring a:"
-			<< endl << "1. Pistol and ammunition."
+			<< endl << "1. Pistol with ammunition."
 			<< endl << "2. Crow bar.";
 	}
 	else if (characterNumber == 2) {

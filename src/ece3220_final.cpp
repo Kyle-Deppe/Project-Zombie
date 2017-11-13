@@ -87,8 +87,10 @@ void newGame(Player ** player1, Player ** player2)
 	(**player1).printPlayerData();
 	cout << endl << "<PLAYER 2>";
 	(**player2).printPlayerData();
-
-	cout << endl << "*****Press <ENTER> to initiate Project Zombie*****";
+	
+	cout << endl << "////////////////////////////////////////////////////////";
+	cout << endl << "/////   Press <ENTER> to initiate Project Zombie   /////";
+	cout << endl << "////////////////////////////////////////////////////////";
 	getline(cin, buffer);
 
 	cout << endl << "TYPE <Q> TO QUIT." << endl;;
