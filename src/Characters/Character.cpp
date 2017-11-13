@@ -46,7 +46,7 @@ Character::~Character() {
 
 void Character::printPlayerData()
 {
-	cout << "\n" << name << "'s Stats" << endl
+	cout << endl << name << "'s Stats" << endl
 			<< "Health: " << health << endl
 			<< "Supplies: " << supplies << endl
 			<< "Luck: " << luck << endl;

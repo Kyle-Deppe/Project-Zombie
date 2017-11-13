@@ -28,8 +28,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1);
 void setupCharacters(Character ** player1, Character ** player2)
 {
 	string choiceString = "0";
-	int characterPlayer1 = 0;
-	int characterPlayer2 = 0;
+	int characterPlayer1 = 0, characterPlayer2 = 0;
 
 	cout << endl << "<PLAYER 1>";
 	choiceString = player1CharacterChoice(choiceString);
@@ -59,52 +58,30 @@ void setupCharacters(Character ** player1, Character ** player2)
 
 void runGame()
 {
-	int state = 0;
-	int menuChoice = 0;
 	string choiceString = "0";
-	Character * player1 = NULL;
-	Character * player2 = NULL;
+	int state = 0, menuChoice = 0;
+	Character *player1 = NULL, *player2 = NULL;
 
-	/*
-	 * Game States
-	 * -1. Exit Game
-	 * 0. Main Menu
-	 * 1. Playing the Game
-	 */
-
-	 //MAIN GAME LOOP!
-	while (state != -1)
+	while (1)
 	{
-		if (state == 0)
-		{
-			choiceString = mainMenuChoice(choiceString);
-			menuChoice = stoi(choiceString);
+		choiceString = mainMenuChoice(choiceString);
+		menuChoice = stoi(choiceString);
 
-			switch (menuChoice)
-			{
-			case 1:
-				state = 1;
-				newGame(&player1, &player2);
-				break;
-			case 2:
-				displayInstructions();
-				break;
-			case 3:
-				state = -1;
-				break;
-			default:
-				cout << endl << "Error. Try again." << endl;
-				break;
-			}
+		if (menuChoice == 1) {
+			state = 1;
+			newGame(&player1, &player2);
+			break;
 		}
-
-		if (state == 1)
-		{
-			cout << endl << endl << "Press <ENTER> to exit.";
-			cin.ignore();
+		else if (menuChoice == 2) {
+			displayInstructions();
+		}
+		else if (menuChoice == 3) {
 			state = -1;
+			break;
 		}
-
+		else {
+			cout << endl << "Error. Try again." << endl;
+		}
 	}
 
 	cout << endl << endl << "EXITING PROJECT ZOMBIE" << endl;
@@ -140,11 +117,11 @@ void displayInstructions() {
 
 string mainMenuChoice(string &choiceString) {
 	cout << endl << "Welcome to Project Zombie"
-	<< endl << "Please select an option: "
-	<< endl << "1. Play Game"
-	<< endl << "2. See Instructions"
-	<< endl << "3. Exit"
-	<< endl << ">> ";
+		<< endl << "Please select an option: "
+		<< endl << "1. Play Game"
+		<< endl << "2. See Instructions"
+		<< endl << "3. Exit"
+		<< endl << ">> ";
 
 	getline(cin, choiceString);
 
@@ -155,10 +132,10 @@ string mainMenuChoice(string &choiceString) {
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option:"
-		<< endl << "1. Play Game"
-		<< endl << "2. See Instructions"
-		<< endl << "3. Exit"
-		<< endl << ">> ";
+			<< endl << "1. Play Game"
+			<< endl << "2. See Instructions"
+			<< endl << "3. Exit"
+			<< endl << ">> ";
 
 		getline(cin, choiceString);
 	}
@@ -204,8 +181,8 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 
 	while (
 		((!choiceString._Equal("1"))
-		&& (!choiceString._Equal("2"))
-		&& (!choiceString._Equal("3")))
+			&& (!choiceString._Equal("2"))
+			&& (!choiceString._Equal("3")))
 		|
 		(stoi(choiceString) == characterPlayer1)
 		) {
