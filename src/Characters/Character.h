@@ -51,6 +51,7 @@ public:
 
 	bool isLost() { return loseGame; }
 	void addChoice(int newChoice) { prevChoices.push_back(newChoice); }
+	int getLastChoice() { return prevChoices[prevChoices.size() - 1]; }
 
 	void turn1();
 	void turn2();

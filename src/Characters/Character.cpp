@@ -123,6 +123,21 @@ void Player::turn1() {
 	if (characterNumber == 1) {
 		cout << endl << "You are Arnold Cooper, a member of the United States Marines. Sitting in your chair...";
 	}
+	else if (characterNumber == 2) {
+
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn2() {

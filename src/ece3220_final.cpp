@@ -108,6 +108,8 @@ void newGame(Player ** player1, Player ** player2)
 
 	cout << endl << "Press <ENTER> to initiate Project Zombie.";
 	getline(cin, buffer);
+
+	cout << "TYPE <Q> TO QUIT." << endl;;
 }
 
 void playGame(Player **player1, Player **player2) {
@@ -116,13 +118,20 @@ void playGame(Player **player1, Player **player2) {
 	cout << endl << "<PLAYER 1>";
 	(**player1).turn1();
 	(**player1).addChoice(choice());
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn1();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -133,10 +142,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn2();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -147,10 +163,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn3();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -161,10 +184,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn4();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -175,10 +205,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn5();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -189,10 +226,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn6();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -203,10 +247,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn7();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -217,10 +268,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn8();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -231,10 +289,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn9();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -245,10 +310,17 @@ void playGame(Player **player1, Player **player2) {
 	if ((**player1).isLost() == 1) {
 		return;
 	}
+	if ((**player1).getLastChoice() == 3) {
+		return;
+	}
+
 	cout << endl << "<PLAYER 2>";
 	(**player2).turn10();
-	(**player1).addChoice(choice());
+	(**player2).addChoice(choice());
 	if ((**player2).isLost() == 1) {
+		return;
+	}
+	if ((**player2).getLastChoice() == 3) {
 		return;
 	}
 
@@ -272,16 +344,57 @@ int choice() {
 	string choiceString = "";
 	int choice = 0;
 
-	cout << endl << ">> ";
-	getline(cin, choiceString);
-
-	while ((!choiceString._Equal("1")) && (!choiceString._Equal("2"))) {
-		cout  << "Invalid choice. Select a choice by entering <1> or <2>" << endl << ">> ";
+	while (1) {
+		cout << endl << ">> ";
 		getline(cin, choiceString);
-	}
 
+		while (
+			(!choiceString._Equal("1"))
+			&& (!choiceString._Equal("2"))
+			&& (!choiceString._Equal("Q"))
+			&& (!choiceString._Equal("q"))
+			&& (!choiceString._Equal("Quit"))
+			&& (!choiceString._Equal("quit"))
+			) {
+			cout << "Invalid choice. Select a choice by entering <1> or <2>" << endl << ">> ";
+			getline(cin, choiceString);
+		}
+
+		if (choiceString._Equal("Q") | choiceString._Equal("q") | choiceString._Equal("Quit") | choiceString._Equal("quit")) {
+			cout << endl << "Are you sure that you want to quit?"
+				<< endl << "Type <Y> or <N>" << endl << ">> ";
+			getline(cin, choiceString);
+			while (
+				(!choiceString._Equal("Y"))
+				&& (!choiceString._Equal("y"))
+				&& (!choiceString._Equal("Yes"))
+				&& (!choiceString._Equal("yes"))
+				&& (!choiceString._Equal("N"))
+				&& (!choiceString._Equal("n"))
+				&& (!choiceString._Equal("No"))
+				&& (!choiceString._Equal("no"))
+				) {
+				cout << "Invalid choice. Select a choice by entering <Y> or <N>" << endl << ">> ";
+				getline(cin, choiceString);
+			}
+
+			if (
+				  (choiceString._Equal("Y"))
+				| (choiceString._Equal("y"))
+				| (choiceString._Equal("Yes"))
+				| (choiceString._Equal("yes"))
+				) {
+				return 3;
+			}
+			else {
+				continue;
+			}
+
+		}
+	}
 	choice = stoi(choiceString);
 
+	cout << endl;
 	return choice;
 }
 
