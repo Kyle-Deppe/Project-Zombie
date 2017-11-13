@@ -40,7 +40,8 @@ Character::Character(int choice) {
 	}
 }
 
-Character::~Character() {
+Character::~Character()
+{
 }
 
 void Character::printPlayerData()
@@ -66,9 +67,20 @@ int Character::getSupplies()
 	return supplies;
 }
 
-int Character::getTurn()
+void Character::showStory( int turnNumber )
 {
-	return turnNumber;
+	std::map<int, string>::const_iterator iter;
+
+	for ( iter = mainStory.begin(); iter != mainStory.end(); iter++ )
+	{
+		if( iter->first == turnNumber )
+		{
+			cout << "Turn #: " << iter->first << endl << "Story:" << iter->second << endl;
+			return;
+		}
+	}
+
+	cout << "NO STORY found for this turn for " << name << endl;
 }
 
 void Character::addHealth(int number) {

@@ -89,6 +89,12 @@ void runGame()
 		{
 			//This is
 		}
+		//Quitting state
+		else if ( gameState == 2 )
+		{
+			/*TODO: SAVE THE GAME!!!*/
+			gameState = -1;
+		}
 	}
 
 	delete(player1);
@@ -137,7 +143,20 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
 }
 
-void playGame(Player **player1, Player **player2) {
+void playGame(Player **player1, Player **player2)
+{
+	static unsigned int gameTurn = 0;
+
+	//Player 1 Turn
+	player1->showStory( gameTurn );
+	doRandomEncounter( player1 );
+
+	//Player 2 Turn
+	player2->showStory( gameTurn );
+	doRandomEncounter( player2 );
+
+	++gameTurn;
+
 	cout << endl << endl;
 
 	cout << endl << "<PLAYER 1>";

@@ -13,7 +13,6 @@ using namespace std;
 class Character {
 protected:
 	string name;
-	int turnNumber = 1;
 	int health;		//A number between 0-100
 	int supplies;	//A number between 0-100
 	int luck;		//A number between 0-100 that increases the likelyhood of passing checks
@@ -34,7 +33,7 @@ public:
 	void addHealth(int number);				// Input a negative number for subtraction. Auto sets to 0 or 100 for extreme values.
 	void addSupplies(int number);
 	void addLuck(int number);
-	void nextTurn() { ++turnNumber; }
+	void showStory( int turnNumber );
 
 	void addStory(int turn, string story);
 };
