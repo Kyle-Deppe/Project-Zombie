@@ -1,7 +1,6 @@
 #include "Character.h"
 
 Character::Character(int choice) {
-	// cout << "constructor" << endl;
 
 	if (choice == 1) {
 		name = "Arnold";				// Arnold Cooper
@@ -22,7 +21,7 @@ Character::Character(int choice) {
 		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 4) {
-		// name = ???                   // Lil Pupper ///////////////////////////////////////////////
+		name = "Smol Pupper";           // Pupper //////////////////////////////////////////////////////////////////// Joel: Choose name
 		health = 50 + (rand() % 41);
 		supplies = 35 + (rand() % 41);
 		luck = 35 + (rand() % 41);
@@ -42,7 +41,6 @@ Character::Character(int choice) {
 }
 
 Character::~Character() {
-	// cout << name << " deconstructor" << endl;
 }
 
 void Character::printPlayerData()
@@ -119,9 +117,24 @@ Player::Player(int choice) : Character(choice) {
 	characterNumber = choice;
 };
 
+void Player::addChoice(int newChoice)
+{
+	if (prevChoices.size() >= 1) {
+		prevChoice = getLastChoice();
+	}
+
+	prevChoices.push_back(newChoice);
+	currentChoice = getLastChoice();
+}
+
 void Player::turn1() {
 	if (characterNumber == 1) {
-		cout << endl << "You are Arnold Cooper, a member of the United States Marines. Sitting in your chair...";
+		cout << endl << "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk, you listen to the radio"
+			<< endl << "as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
+			<< endl << "keeping in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to"
+			<< endl << "also bring a:"
+			<< endl << "1. Pistol and ammunition."
+			<< endl << "2. Crow bar.";
 	}
 	else if (characterNumber == 2) {
 
@@ -141,41 +154,213 @@ void Player::turn1() {
 }
 
 void Player::turn2() {
+	if (characterNumber == 1) {
+		if (prevChoice == 1) {
+			addSupplies(rand() % 11);
+			addLuck((rand() % 11) * -1);
+		}
+		else {
+			addSupplies((rand() % 11) * (-1));
+			addLuck(rand() % 11);
+		}
+		cout << endl << "You've gone outside and started biking west. You reach a bridge that gave out. About to turn around,"
+			<< endl << "you notice the side walls of the bridge are intact. Do you"
+			<< endl << "1. Turn around and go the long way. The bridge might crumble."
+			<< endl << "2. Go across the bridge anyways. It's going to be dark soon.";
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn3() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn4() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn5() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn6() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn7() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn8() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn9() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::turn10() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }
 
 void Player::displayEpilogue() {
+	if (characterNumber == 1) {
+	}
+	else if (characterNumber == 2) {
 
+	}
+	else if (characterNumber == 3) {
+
+	}
+	else if (characterNumber == 4) {
+
+	}
+	else if (characterNumber == 5) {
+
+	}
+	else if (characterNumber == 6) {
+
+	}
 }

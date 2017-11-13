@@ -10,7 +10,6 @@
 
 using namespace std;
 
-//Some Prototypes
 void setupCharacters(Player **, Player **);
 void runGame();
 void newGame(Player **, Player **);
@@ -23,12 +22,6 @@ string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
 
 
-/*
- * In this method we can build the characters.
- * 		Build as follows: Character name( STRING Name, INT Health (0-100), INT Supplies (0-10), INT Luck (0-100) )
- * Add story elements to appear on turns.
- * 		Build as follows: .addStory( INT turnNum, STRING story )l
- */
 void setupCharacters(Player ** player1, Player ** player2)
 {
 	string choiceString = "0";
@@ -48,16 +41,6 @@ void setupCharacters(Player ** player1, Player ** player2)
 	*player1 = NewPlayer1;
 	*player2 = NewPlayer2;
 
-	/*
-	Character * DoctorRivera = new Character("Dr. Rivera", 75, 10, 25);
-	DoctorRivera->addStory(0, "After escaping the University of Missouri, you hopped into your trusty Corvette and head on your journey towards safety");
-	DoctorRivera->addStory(5, "Story Arc #2 on turn 5.");
-
-	Character * lilPupper = new Character("Lil' Pupper", 100, 0, 100);
-
-	Add story elements to appear on turns.
-	Build as follows: .addStory( INT turnNum, STRING story )
-	*/
 }
 
 void runGame()
@@ -89,7 +72,6 @@ void runGame()
 		}
 	}
 
-	// Free the allocated memory.
 	delete(player1);
 	delete(player2);
 }
@@ -109,7 +91,7 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl << "Press <ENTER> to initiate Project Zombie.";
 	getline(cin, buffer);
 
-	cout << "TYPE <Q> TO QUIT." << endl;;
+	cout << endl << "TYPE <Q> TO QUIT." << endl;;
 }
 
 void playGame(Player **player1, Player **player2) {
@@ -390,6 +372,9 @@ int choice() {
 				continue;
 			}
 
+		}
+		else {
+			break;
 		}
 	}
 	choice = stoi(choiceString);
