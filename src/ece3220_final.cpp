@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "Characters/Character.h"
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ void playGame(Player **, Player **);
 void displayInstructions();
 
 int choice();
-string mainMenuChoice(string &choiceString);
+string mainMenuChoice(string &choiceString) throw ( bad_input );
 string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
 
@@ -46,29 +47,47 @@ void setupCharacters(Player ** player1, Player ** player2)
 void runGame()
 {
 	string choiceString = "0";
-	int state = 0, menuChoice = 0;
+	int gameState = 0;
+	int menuChoice = 0;
 	Player *player1 = NULL, *player2 = NULL;
 
-	while (1)
+	while ( gameState != -1 )
 	{
-		choiceString = mainMenuChoice(choiceString);
-		menuChoice = stoi(choiceString);
+		//Main menu state
+		if( gameState == 0 )
+		{
+			try
+			{
+				choiceString = mainMenuChoice(choiceString);
+			}
+			catch( bad_input & e )
+			{
 
-		if (menuChoice == 1) {
-			state = 1;
-			newGame(&player1, &player2);
-			playGame(&player1, &player2);
-			break;
+			}
+			menuChoice = stoi(choiceString);
+
+			switch( menuChoice )
+			{
+				case 1:
+					gameState = 1;
+					newGame(&player1, &player2);
+					playGame(&player1, &player2);
+					break;
+				case 2:
+					displayInstructions();
+					break;
+				case 3:
+					gameState = -1;
+					break;
+				default:
+					cout << "Not a valid choice. Try again." << endl;
+			}
+
 		}
-		else if (menuChoice == 2) {
-			displayInstructions();
-		}
-		else if (menuChoice == 3) {
-			state = -1;
-			break;
-		}
-		else {
-			cout << endl << "Error. Try again." << endl;
+		//This is the playing game state of the game
+		else if ( gameState == 1 )
+		{
+			//This is
 		}
 	}
 
@@ -411,7 +430,7 @@ int choice() {
 	return choice;
 }
 
-string mainMenuChoice(string &choiceString) {
+string mainMenuChoice(string &choiceString) throw (bad_input) {
 	cout << endl << "Please select an option: "
 		<< endl << "1. Play Game"
 		<< endl << "2. See Instructions"
@@ -420,7 +439,17 @@ string mainMenuChoice(string &choiceString) {
 
 	getline(cin, choiceString);
 
-	while (
+	if( (choiceString != "1") || (choiceString != "2") || (choiceString != "3") )
+	{
+		throw bad_input;
+	}
+
+	return choiceString;
+
+	/*
+	 * I don't think we need all of this.
+	 */
+	/*while (
 		(!choiceString._Equal("1"))
 		&& (!choiceString._Equal("2"))
 		&& (!choiceString._Equal("3"))
@@ -433,9 +462,7 @@ string mainMenuChoice(string &choiceString) {
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
-	}
-
-	return choiceString;
+	}*/
 }
 
 string player1CharacterChoice(string &choiceString) {
