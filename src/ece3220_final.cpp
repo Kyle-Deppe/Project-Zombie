@@ -7,12 +7,14 @@
 #include <cstdlib>
 #include <ctime>
 #include "Characters/Character.h"
+
 using namespace std;
 
 //Some Prototypes
-void setupCharacters(Character **, Character **);
+void setupCharacters(Player **, Player **);
 void runGame();
-void newGame(Character **, Character **);
+void newGame(Player **, Player **);
+void playGame(Player **, Player **);
 void displayInstructions();
 string mainMenuChoice(string &choiceString);
 string player1CharacterChoice(string &choiceString);
@@ -25,7 +27,7 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1);
  * Add story elements to appear on turns.
  * 		Build as follows: .addStory( INT turnNum, STRING story )l
  */
-void setupCharacters(Character ** player1, Character ** player2)
+void setupCharacters(Player ** player1, Player ** player2)
 {
 	string choiceString = "0";
 	int characterPlayer1 = 0, characterPlayer2 = 0;
@@ -38,8 +40,8 @@ void setupCharacters(Character ** player1, Character ** player2)
 	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
 	characterPlayer2 = stoi(choiceString);
 
-	Character *NewPlayer1 = new Character(characterPlayer1);
-	Character *NewPlayer2 = new Character(characterPlayer2);
+	Player *NewPlayer1 = new Player(characterPlayer1);
+	Player *NewPlayer2 = new Player(characterPlayer2);
 
 	*player1 = NewPlayer1;
 	*player2 = NewPlayer2;
@@ -60,7 +62,7 @@ void runGame()
 {
 	string choiceString = "0";
 	int state = 0, menuChoice = 0;
-	Character *player1 = NULL, *player2 = NULL;
+	Player *player1 = NULL, *player2 = NULL;
 
 	while (1)
 	{
@@ -70,6 +72,7 @@ void runGame()
 		if (menuChoice == 1) {
 			state = 1;
 			newGame(&player1, &player2);
+			playGame(&player1, &player2);
 			break;
 		}
 		else if (menuChoice == 2) {
@@ -89,7 +92,7 @@ void runGame()
 	delete(player2);
 }
 
-void newGame(Character ** player1, Character ** player2)
+void newGame(Player ** player1, Player ** player2)
 {
 	cout << endl << "Creating a new game..." << endl;
 
@@ -101,6 +104,112 @@ void newGame(Character ** player1, Character ** player2)
 	(**player2).printPlayerData();
 }
 
+void playGame(Player **player1, Player **player2) {
+	while (1) {
+		(**player1).turn1();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn1();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn2();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn2();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn3();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn3();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn4();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn4();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn5();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn5();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn6();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn6();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn7();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn7();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn8();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn8();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn9();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn9();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+
+		(**player1).turn10();
+		if ((**player1).isLost() == 1) {
+			break;
+		}
+		(**player2).turn10();
+		if ((**player2).isLost() == 2) {
+			break;
+		}
+
+		(**player1).displayEpilogue();
+		(**player2).displayEpilogue();
+	}
+}
+
 void displayInstructions() {
 	cout << endl << "Instructions:"
 		<< endl << "The world has been overrun by zombies. Last night a radio broadcast announced that"
@@ -108,14 +217,13 @@ void displayInstructions() {
 		<< endl << "are heading west. In the beginning the players will choose a character to be"
 		<< endl << "assigned health, supplies, and luck. During the game the players' decisions"
 		<< endl << "impact their stats, where decisions that match the character's personality"
-		<< endl << "tend to favorably increase stats the most."
-		<< endl << "Will you make it to San Diego?"
+		<< endl << "tend to favorably increase stats the most. The game ends when a player's health has"
+		<< endl << "reached 0 or they both get to San Diego."
 		<< endl;
 }
 
 string mainMenuChoice(string &choiceString) {
-	cout << endl << "Welcome to Project Zombie"
-		<< endl << "Please select an option: "
+	cout << endl << "Please select an option: "
 		<< endl << "1. Play Game"
 		<< endl << "2. See Instructions"
 		<< endl << "3. Exit"
@@ -143,9 +251,8 @@ string mainMenuChoice(string &choiceString) {
 
 string player1CharacterChoice(string &choiceString) {
 	cout << endl << "Please select a character:"
-		<< endl << "1. Dr. Rivera - Ingenious Professor"
+		<< endl << "1. Arnold Cooper - Military"
 		<< endl << "2. Clark Kent - Lawyer"
-		<< endl << "3. Smith Cooper - Military"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
@@ -153,13 +260,11 @@ string player1CharacterChoice(string &choiceString) {
 	while (
 		(!choiceString._Equal("1"))
 		&& (!choiceString._Equal("2"))
-		&& (!choiceString._Equal("3"))
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option:"
-			<< endl << "1. Dr. Rivera - Ingenious Professor"
+			<< endl << "1. Arnold Cooper - Military"
 			<< endl << "2. Clark Kent - Lawyer"
-			<< endl << "3. Smith Cooper - Military"
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
@@ -170,25 +275,24 @@ string player1CharacterChoice(string &choiceString) {
 
 string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 	cout << endl << "Please select a character:"
-		<< endl << "1. Dr. Rivera - Ingenious Professor"
+		<< endl << "1. Arnold Cooper - Military"
 		<< endl << "2. Clark Kent - Lawyer"
-		<< endl << "3. Smith Cooper - Military"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
 
 	while (
-		((!choiceString._Equal("1"))
+		(
+		(!choiceString._Equal("1"))
 			&& (!choiceString._Equal("2"))
-			&& (!choiceString._Equal("3")))
+			)
 		|
 		(stoi(choiceString) == characterPlayer1)
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"
-			<< endl << "1. Dr. Rivera - Ingenious Professor"
+			<< endl << "1. Arnold Cooper - Military"
 			<< endl << "2. Clark Kent - Lawyer"
-			<< endl << "3. Smith Cooper - Military"
 			<< endl << ">> ";
 
 		getline(cin, choiceString);
@@ -200,9 +304,9 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 int main()
 {
 	string buffer = "";
-	
+
 	srand(time(NULL));
-	cout << "PROJECT ZOMBIE" << endl;
+	cout << "PROJECT ZOMBIE" << endl << endl << "Welcome to Project Zombie";
 
 	runGame();
 

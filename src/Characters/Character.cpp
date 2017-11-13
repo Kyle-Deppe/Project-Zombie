@@ -4,40 +4,41 @@ Character::Character(int choice) {
 	// cout << "constructor" << endl;
 
 	if (choice == 1) {
-		name = "Dr. Rivera";
-		health = 35 + (rand() % 41);
+		name = "Arnold";				// Arnold Cooper
+		health = 50 + (rand() % 41);
 		supplies = 35 + (rand() % 41);
 		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 2) {
-		name = "Clark Kent";
-		health = 35 + (rand() % 41);
+		name = "Clark";					// Clark Kent
+		health = 50 + (rand() % 41);
 		supplies = 35 + (rand() % 41);
 		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 3) {
-		name = "Smith Cooper";
-		health = 35 + (rand() % 41);
+		name = "Dr. Rivera";			// Dr. Rivera
+		health = 50 + (rand() % 41);
 		supplies = 35 + (rand() % 41);
 		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 4) {
-		// Lil Pupper
+		// name = ???                   // Lil Pupper ///////////////////////////////////////////////
+		health = 50 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 5) {
-		// Child
+		name = "Abigail";				// Abigail Willow
+		health = 50 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
 	else if (choice == 6) {
-		// Conspiracy Theorist
+		name = "Darwin";				// Darwin Arnold
+		health = 50 + (rand() % 41);
+		supplies = 35 + (rand() % 41);
+		luck = 35 + (rand() % 41);
 	}
-}
-
-Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
-	// cout << _name << " constructor" << endl;
-	name = _name;
-	health = _health;
-	supplies = _supplies;
-	luck = _luck;
 }
 
 Character::~Character() {
@@ -110,4 +111,57 @@ void Character::addStory( int turn, string story )
 {
 	cout << "Adding Story to " << name << endl;
 	mainStory.emplace( turn, story );
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Player::Player(int choice) : Character(choice) {
+	characterNumber = choice;
+	prevChoices = NULL;
+};
+
+void Player::turn1() {
+	if (characterNumber == 1) {
+
+	}
+}
+
+void Player::turn2() {
+
+}
+
+void Player::turn3() {
+
+}
+
+void Player::turn4() {
+
+}
+
+void Player::turn5() {
+
+}
+
+void Player::turn6() {
+
+}
+
+void Player::turn7() {
+
+}
+
+void Player::turn8() {
+
+}
+
+void Player::turn9() {
+
+}
+
+void Player::turn10() {
+
+}
+
+void displayEpilogue() {
+
 }
