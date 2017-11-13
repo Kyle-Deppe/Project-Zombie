@@ -471,8 +471,8 @@ string player2CharacterChoice(string &choiceString, int characterPlayer1) {
 			// && (!choiceString._Equal("5"))
 			// && (!choiceString._Equal("6"))
 			)
-		|
-		(stoi(choiceString) == characterPlayer1)
+		 |
+		 (choiceString._Equal(to_string(characterPlayer1)))
 		) {
 
 		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"
