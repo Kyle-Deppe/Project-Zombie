@@ -1,7 +1,7 @@
 #include "Character.h"
 
 Character::Character(int choice) {
-	cout << "constructor" << endl;
+	// cout << "constructor" << endl;
 
 	if (choice == 1) {
 		name = "Dr. Rivera";
@@ -33,7 +33,7 @@ Character::Character(int choice) {
 }
 
 Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
-	cout << _name << " constructor" << endl;
+	// cout << _name << " constructor" << endl;
 	name = _name;
 	health = _health;
 	supplies = _supplies;
@@ -41,7 +41,7 @@ Character::Character( string _name, int _health = 100, int _supplies = 10, int _
 }
 
 Character::~Character() {
-	cout << name << " deconstructor" << endl;
+	// cout << name << " deconstructor" << endl;
 }
 
 void Character::printPlayerData()

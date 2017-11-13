@@ -100,30 +100,30 @@ void runGame()
 
 		if (state == 1)
 		{
-			cout << "TODO: Press Enter to exit..." << endl;
+			cout << endl << endl << "Press <ENTER> to exit.";
 			cin.ignore();
 			state = -1;
 		}
 
 	}
 
-	cout << "Thanks for playing!" << endl;
+	cout << endl << endl << "EXITING PROJECT ZOMBIE" << endl;
+
+	// Free the allocated memory.
 	delete(player1);
 	delete(player2);
 }
 
 void newGame(Character ** player1, Character ** player2)
 {
-	cout << endl << "Creating a new game." << endl;
+	cout << endl << "Creating a new game..." << endl;
 
 	setupCharacters(player1, player2);
 
-	cout << "Print Character Data" << endl;
+	cout << endl << "<PLAYER 1>";
 	(**player1).printPlayerData();
+	cout << endl << "<PLAYER 2>";
 	(**player2).printPlayerData();
-
-	//Delete Characters
-	cout << "\nDeconstructors" << endl;
 }
 
 void displayInstructions() {
