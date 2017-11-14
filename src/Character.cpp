@@ -75,6 +75,11 @@ int Character::getSupplies()
 	return supplies;
 }
 
+string Character::getName()
+{
+	return name;
+}
+
 void Character::showStory( int turnNumber )
 {
 	std::map<int, string>::const_iterator iter;
@@ -149,11 +154,23 @@ void CharacterList::setupCharacters()
 
 	//Basic constructor calling. The one you setup is totally cool too.
 	Character * arnoldCooper = new Character( "Arnold", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
-	//Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
-	//Character * drRivera = new Character( "Louis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
-	//Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
-	//Character * abigailWillow = new Character( "Abigail", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
-	//Character * darwinArnold = new Character( "Darwin", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( arnoldCooper );
+
+	Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( clarkKent );
+
+	Character * drRivera = new Character( "Louis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( drRivera );
+
+	Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( lilPupper );
+
+	Character * abigailWillow = new Character( "Abigail", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( abigailWillow );
+
+	Character * darwinArnold = new Character( "Darwin", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	list.push_back( darwinArnold );
+
 
 	//Basically, right here we can add story elements into the game.
 	/*
@@ -171,6 +188,18 @@ void CharacterList::setupCharacters()
 			"\n2. Crow Bar"
 			);
 	arnoldCooper->addStory(10, "A story for turn 10");
+
+}
+
+Character* CharacterList::chooseCharacter()
+{
+
+	for (auto i = list.begin(); i != list.end(); ++i )
+	{
+	    std::cout << list[0]->getName() << endl;
+	}
+
+	return list[1];
 
 }
 

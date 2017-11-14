@@ -12,20 +12,21 @@
 
 using namespace std;
 
-void setupCharacters(Player **, Player **);
+void setupCharacters(Character **, Character **);
 void runGame();
-void newGame(Player **, Player **);
-void playGame(Player **, Player **);
+void newGame(Character **, Character **);
+void playGame(Character *, Character *);
 void displayInstructions();
 
-int choice();
 string mainMenuChoice(string &choiceString) throw ( bad_input );
 string player1CharacterChoice(string &choiceString);
 string player2CharacterChoice(string &choiceString, int characterPlayer1);
 
 
-void setupCharacters(Player ** player1, Player ** player2)
+void setupCharacters(Character ** player1, Character ** player2)
 {
+	CharacterList * charList = new CharacterList();
+
 	string choiceString = "0";
 	int characterPlayer1 = 0, characterPlayer2 = 0;
 
@@ -38,9 +39,11 @@ void setupCharacters(Player ** player1, Player ** player2)
 	characterPlayer2 = stoi(choiceString);
 
 
+	Character * NewPlayer1 =  charList->chooseCharacter();
+	Character * NewPlayer2 =  charList->chooseCharacter();
 
-	Player *NewPlayer1 = new Player(characterPlayer1);
-	Player *NewPlayer2 = new Player(characterPlayer2);
+	/*Player * NewPlayer1 = new Player(characterPlayer1);
+	Player * NewPlayer2 = new Player(characterPlayer2);*/
 
 	*player1 = NewPlayer1;
 	*player2 = NewPlayer2;
@@ -53,7 +56,7 @@ void runGame()
 	int gameState = 0;
 	int menuChoice = 0;
 
-	Player *player1 = NULL, *player2 = NULL;
+	Character * player1 = NULL, *player2 = NULL;
 	EncounterList * encounters = new EncounterList();
 
 	while ( gameState != -1 )
@@ -67,7 +70,8 @@ void runGame()
 			}
 			catch( bad_input & e )
 			{
-
+				cout << e.what() << endl;
+				choiceString = "0";
 			}
 			menuChoice = stoi(choiceString);
 
@@ -75,8 +79,7 @@ void runGame()
 			{
 				case 1:
 					gameState = 1;
-					newGame(&player1, &player2);
-					playGame(&player1, &player2);
+					newGame( &player1, &player2 );
 					break;
 				case 2:
 					displayInstructions();
@@ -93,7 +96,7 @@ void runGame()
 		else if ( gameState == 1 )
 		{
 			//This is where all the gameplay actually takes place
-			playGame( &player1, &player2 );
+			playGame( player1, player2 );
 		}
 		//Quitting state
 		else if ( gameState == 2 )
@@ -107,7 +110,7 @@ void runGame()
 	delete(player2);
 }
 
-void newGame(Player ** player1, Player ** player2)
+void newGame(Character ** player1, Character ** player2)
 {
 	string buffer = "";
 	cout << endl << "Creating a new game..." << endl;
@@ -135,13 +138,13 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl << "                 XXXXX.....XX      \\#########/\\;;;;;;,, /      XX.....XXXXX";
 	cout << endl << "                X |......XX%,.@      \\######/%;\\;;;;, /      @#%,XX......| X";
 	cout << endl << "                X |.....X  @#%,.@     |######%%;;;;,.|     @#%,.@     X.....| X";
-	cout << endl << "                X  \...X     @#%,.@    |# # # % ; ; ;,|   @#%,.@       X..\./  X";
-	cout << endl << "                 X# \.X        @#%,.@                  @#%,.@           X\./  #";
+	cout << endl << "                X  \\...X     @#%,.@    |# # # % ; ; ;,|   @#%,.@       X.../  X";
+	cout << endl << "                 X# \\.X        @#%,.@                  @#%,.@           X./  #";
 	cout << endl << "                  ##  X          @#%,.@              @#%,.@             X   #";
 	cout << endl << "                , \"# #X            @#%, .@          @#%, .@            X ##";
 	cout << endl << "                   `###X             @#%,.@      @#%,.@             ####'";
 	cout << endl << "                  . ' ###              @#%.,@  @#%,.@              ###`";
-	cout << "                    . "; "                @#%.@#%,.@                ;\"` ' .";
+	cout << endl << "                    . "; "                @#%.@#%,.@                ;\"` ' .";
 	cout << endl << "                      '                    @#%,.@                   ,.";
 	cout << endl << "                          ` ,            @#%,.@  @@                `";
 	cout << endl << "                                          @@@  @@@ ";
@@ -149,7 +152,12 @@ void newGame(Player ** player1, Player ** player2)
 	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
 }
 
-void playGame(Player **player1, Player **player2)
+void doRandomEncounter( Character * player )
+{
+
+}
+
+void playGame( Character * player1, Character * player2 )
 {
 	static unsigned int gameTurn = 0;
 
@@ -164,6 +172,10 @@ void playGame(Player **player1, Player **player2)
 	++gameTurn;
 
 	cout << endl << endl;
+
+	cout << "Another Turn Completed" << endl <<
+			"Press <ENTER> to Continue || Press <TAB> to Save and Quit to Menu" << endl;
+	cin.ignore();
 
 	/*cout << endl << "<PLAYER 1>";
 	(**player1).turn1();
@@ -458,7 +470,8 @@ void displayInstructions() {
 	return choice;
 }*/
 
-string mainMenuChoice(string &choiceString) throw (bad_input) {
+string mainMenuChoice(string &choiceString) throw (bad_input)
+{
 	cout << endl << "Please select an option: "
 		<< endl << "1. Play Game"
 		<< endl << "2. See Instructions"
@@ -467,30 +480,13 @@ string mainMenuChoice(string &choiceString) throw (bad_input) {
 
 	getline(cin, choiceString);
 
-	if( (choiceString != "1") || (choiceString != "2") || (choiceString != "3") )
+	if( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
 	{
-		throw new bad_input();
+		throw bad_input();
 	}
 
 	return choiceString;
 
-	/*
-	 * I don't think we need all of this.
-	 */
-	/*while (
-		(!choiceString._Equal("1"))
-		&& (!choiceString._Equal("2"))
-		&& (!choiceString._Equal("3"))
-		) {
-
-		cout << endl << "Invalid choice. Select a valid option:"
-			<< endl << "1. Play Game"
-			<< endl << "2. See Instructions"
-			<< endl << "3. Exit"
-			<< endl << ">> ";
-
-		getline(cin, choiceString);
-	}*/
 }
 
 string player1CharacterChoice(string &choiceString) {

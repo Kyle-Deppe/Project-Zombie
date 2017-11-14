@@ -30,6 +30,7 @@ public:
 	int getHealth();
 	int getSupplies();
 	int getTurn();
+	string getName();
 
 	void addHealth(int number);				// Input a negative number for subtraction. Auto sets to 0 or 100 for extreme values.
 	void addSupplies(int number);
@@ -41,7 +42,7 @@ public:
 
 
 
-class Player : public Character {
+/*class Player : public Character {
 private:
 	int characterNumber;
 	int currentChoice;
@@ -68,16 +69,17 @@ public:
 	void turn10();
 
 	void displayEpilogue();
-};
+};*/
 
 class CharacterList
 {
 	private:
-		vector <Character> list;
+		vector <Character*> list;
 		void setupCharacters();
 	protected:
 	public:
 		CharacterList();
+		Character* chooseCharacter();
 };
 
 #endif /* CHARACTERS_CHARACTER_H_ */
