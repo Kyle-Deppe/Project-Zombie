@@ -166,7 +166,13 @@ Character* CharacterList::chooseCharacter()
 		charSelect = stoi(choiceString);
 	}
 
-	return list[charSelect - 1];
+	--charSelect;
+	cout << "Select:" << charSelect << endl;
+
+	Character * rtn = list[charSelect];
+	list.erase( list.begin() + ( charSelect ) );
+
+	return rtn;
 
 }
 

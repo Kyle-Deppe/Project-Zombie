@@ -73,8 +73,6 @@ void runGame()
 				case 3:
 					gameState = -1;
 					break;
-				default:
-					cout << "Not a valid choice. Try again." << endl;
 			}
 
 		}
