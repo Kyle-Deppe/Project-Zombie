@@ -19,31 +19,17 @@ void playGame(Character *, Character *);
 void displayInstructions();
 
 string mainMenuChoice(string &choiceString) throw ( bad_input );
-string player1CharacterChoice(string &choiceString);
-string player2CharacterChoice(string &choiceString, int characterPlayer1);
 
 
 void setupCharacters(Character ** player1, Character ** player2)
 {
 	CharacterList * charList = new CharacterList();
 
-	string choiceString = "0";
-	int characterPlayer1 = 0, characterPlayer2 = 0;
-
 	cout << endl << "<PLAYER 1>";
-	choiceString = player1CharacterChoice(choiceString);
-	characterPlayer1 = stoi(choiceString);
+	Character * NewPlayer1 =  charList->chooseCharacter();
 
 	cout << endl << "<PLAYER 2>";
-	choiceString = player2CharacterChoice(choiceString, characterPlayer1);
-	characterPlayer2 = stoi(choiceString);
-
-
-	Character * NewPlayer1 =  charList->chooseCharacter();
 	Character * NewPlayer2 =  charList->chooseCharacter();
-
-	/*Player * NewPlayer1 = new Player(characterPlayer1);
-	Player * NewPlayer2 = new Player(characterPlayer2);*/
 
 	*player1 = NewPlayer1;
 	*player2 = NewPlayer2;
@@ -487,84 +473,6 @@ string mainMenuChoice(string &choiceString) throw (bad_input)
 
 	return choiceString;
 
-}
-
-string player1CharacterChoice(string &choiceString) {
-	cout << endl << "Please select a character:"
-		<< endl << "1. Arnold Cooper - Military"
-		<< endl << "2. Clark Kent - Lawyer"
-		// << endl << "3. Dr. Rivera - Ingenious Professor"
-		// << endl << "4. Lil Pupper - Am Pupper"
-		// << endl << "5. Abigail Willow - Elementary Student"
-		// << endl << "6. Darwin Arnold - Survivalist"
-		<< endl << ">> ";
-
-	getline(cin, choiceString);
-
-	/*
-	while (
-		(!choiceString._Equal("1"))
-		&& (!choiceString._Equal("2"))
-		// && (!choiceString._Equal("3"))
-		// && (!choiceString._Equal("4"))
-		// && (!choiceString._Equal("5"))
-		// && (!choiceString._Equal("6"))
-		) {
-
-		cout << endl << "Invalid choice. Select a valid option:"
-			<< endl << "1. Arnold Cooper - Military"
-			<< endl << "2. Clark Kent - Lawyer"
-			// << endl << "3. Dr. Rivera - Ingenious Professor"
-			// << endl << "4. Lil Pupper - Am Pupper"
-			// << endl << "5. Abigail Willow - Elementary Student"
-			// << endl << "6. Darwin Arnold - Survivalist"
-			<< endl << ">> ";
-
-		getline(cin, choiceString);
-	}
-*/
-	return choiceString;
-}
-
-string player2CharacterChoice(string &choiceString, int characterPlayer1) {
-	cout << endl << "Please select a character:"
-		<< endl << "1. Arnold Cooper - Military"
-		<< endl << "2. Clark Kent - Lawyer"
-		// << endl << "3. Dr. Rivera - Ingenious Professor"
-		// << endl << "4. Lil Pupper - Am Pupper"
-		// << endl << "5. Abigail Willow - Elementary Student"
-		// << endl << "6. Darwin Arnold - Survivalist"
-		<< endl << ">> ";
-
-	getline(cin, choiceString);
-
-	/*
-	while (
-		(
-		(!choiceString._Equal("1"))
-			&& (!choiceString._Equal("2"))
-			// && (!choiceString._Equal("3"))
-			// && (!choiceString._Equal("4"))
-			// && (!choiceString._Equal("5"))
-			// && (!choiceString._Equal("6"))
-			)
-		|
-		(choiceString._Equal(to_string(characterPlayer1)))
-		) {
-
-		cout << endl << "Invalid choice. Select a valid option (You can't be the same character as Player 1):"
-			<< endl << "1. Arnold Cooper - Military"
-			<< endl << "2. Clark Kent - Lawyer"
-			// << endl << "3. Dr. Rivera - Ingenious Professor"
-			// << endl << "4. Lil Pupper - Am Pupper"
-			// << endl << "5. Abigail Willow - Elementary Student"
-			// << endl << "6. Darwin Arnold - Survivalist"
-			<< endl << ">> ";
-
-		getline(cin, choiceString);
-	}*/
-
-	return choiceString;
 }
 
 int main(void)

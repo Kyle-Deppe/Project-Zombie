@@ -80,6 +80,7 @@ class CharacterList
 	public:
 		CharacterList();
 		Character* chooseCharacter();
+		void displayCharacters();
 };
 
 #endif /* CHARACTERS_CHARACTER_H_ */

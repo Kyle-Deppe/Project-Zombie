@@ -193,14 +193,31 @@ void CharacterList::setupCharacters()
 
 Character* CharacterList::chooseCharacter()
 {
+	string choiceString = "0";
+	cout << endl << "Please select a character:" << endl;
+	displayCharacters();
 
-	for (auto i = list.begin(); i != list.end(); ++i )
+	getline(cin, choiceString);
+	int charSelect = stoi(choiceString);
+
+	while( (charSelect < 1 ) || (charSelect > list.size()) )
 	{
-	    std::cout << list[0]->getName() << endl;
+		cout << "Invalid choice. Try again.";
+		displayCharacters();
+		getline(cin, choiceString);
+		charSelect = stoi(choiceString);
 	}
 
-	return list[1];
+	return list[charSelect - 1];
 
+}
+
+void CharacterList::displayCharacters()
+{
+	for( unsigned int i = 0; i < list.size(); i++ )
+	{
+	    std::cout << (i + 1) << ". " << list[i]->getName() << endl;
+	}
 }
 
 
