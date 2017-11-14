@@ -35,10 +35,13 @@ class Encounter
 class EncounterList
 {
 private:
-	map <int, Encounter> encounters;
+	vector <Encounter> encounters;
+	void setupEncounters();
 	void deleteEncounter();
+	Encounter randomEnc( unsigned int );
 public:
-	void doEncounter();
+	void doEncounter( Character * player );
+	EncounterList();
 };
 
 #endif /* ENCOUNTER_H_ */

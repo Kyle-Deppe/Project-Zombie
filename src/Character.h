@@ -20,7 +20,6 @@ protected:
 											// (See Character.cpp)
 public:
 	// Character();
-	Character(int choice);
 	Character( string _name, int _health, int _supplies, int _luck );
 	virtual ~Character();
 

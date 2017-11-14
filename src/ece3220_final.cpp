@@ -15,7 +15,7 @@ using namespace std;
 void setupCharacters(Character **, Character **);
 void runGame();
 void newGame(Character **, Character **);
-void playGame(Character *, Character *);
+void playGame(Character *, Character *, int * , EncounterList *  );
 void displayInstructions();
 
 string mainMenuChoice(string &choiceString) throw ( bad_input );
@@ -82,7 +82,21 @@ void runGame()
 		else if ( gameState == 1 )
 		{
 			//This is where all the gameplay actually takes place
-			playGame( player1, player2 );
+			playGame( player1, player2, &gameState, encounters );
+
+			//End of turn
+			cout << "Another Turn Completed" << endl <<
+					"Press <ENTER> to Continue or type (Q)UIT to save and exit." << endl;
+
+			//Get String for Next Turn. IF it's quit, then save and quit, otherwise go to next turn.
+			string nextTurn;
+			getline(cin, nextTurn);
+
+			if( (nextTurn == "QUIT") || (nextTurn == "Q") || (nextTurn == "quit") || (nextTurn == "q") )
+			{
+				gameState = 2;
+			}
+
 		}
 		//Quitting state
 		else if ( gameState == 2 )
@@ -90,10 +104,18 @@ void runGame()
 			/*TODO: SAVE THE GAME!!!*/
 			gameState = -1;
 		}
+		//WIN GAME state
+		else if ( gameState == 3 )
+		{
+			cout << "You've reached the end (for now)!" << endl;
+			//TODO: Add cake. There will be cake.
+			gameState = -1;
+		}
 	}
 
-	delete(player1);
-	delete(player2);
+	//When all is lost...
+	delete( player1 );
+	delete( player2 );
 }
 
 void newGame(Character ** player1, Character ** player2)
@@ -130,257 +152,40 @@ void newGame(Character ** player1, Character ** player2)
 	cout << endl << "                , \"# #X            @#%, .@          @#%, .@            X ##";
 	cout << endl << "                   `###X             @#%,.@      @#%,.@             ####'";
 	cout << endl << "                  . ' ###              @#%.,@  @#%,.@              ###`";
-	cout << endl << "                    . "; "                @#%.@#%,.@                ;\"` ' .";
+	cout << endl << "                    . \"; \"                @#%.@#%,.@                ;\"` ' ." ;
 	cout << endl << "                      '                    @#%,.@                   ,.";
 	cout << endl << "                          ` ,            @#%,.@  @@                `";
 	cout << endl << "                                          @@@  @@@ ";
 
 	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
 }
-
-void doRandomEncounter( Character * player )
-{
-
-}
-
-void playGame( Character * player1, Character * player2 )
+void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters )
 {
 	static unsigned int gameTurn = 0;
 
+	//Start Turn Message
+	cout << "Starting Turn: " << gameTurn << endl;
+
 	//Player 1 Turn
+	cout << "<PLAYER 1>" << endl;
 	player1->showStory( gameTurn );
-	doRandomEncounter( player1 );
+	//Player 1's Random Encounter
+	//encounters->doEncounter( player1 );
 
 	//Player 2 Turn
+	cout << "<PLAYER 2>" << endl;
 	player2->showStory( gameTurn );
-	doRandomEncounter( player2 );
+	//encounters->doEncounter( player2 );
 
 	++gameTurn;
 
+	if( gameTurn > 8 )
+	{
+		//Set gamestate to the ending state!
+		*gameState = 3;
+	}
+
 	cout << endl << endl;
-
-	cout << "Another Turn Completed" << endl <<
-			"Press <ENTER> to Continue || Press <TAB> to Save and Quit to Menu" << endl;
-	cin.ignore();
-
-	/*cout << endl << "<PLAYER 1>";
-	(**player1).turn1();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		// We need to write what happens when a player loses.
-		// (**player1).displayEpilogue();
-		// (**player2).displayEpilogue();
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn1();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn2();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn2();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn3();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn3();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn4();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn4();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn5();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn5();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn6();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn6();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn7();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn7();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn8();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn8();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn9();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn9();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-
-	cout << endl << "<PLAYER 1>";
-	(**player1).turn10();
-	(**player1).addChoice(choice());
-	if ((**player1).isLost() == 1) {
-		return;
-	}
-	if ((**player1).getLastChoice() == 3) {
-		return;
-	}
-
-	cout << endl << "<PLAYER 2>";
-	(**player2).turn10();
-	(**player2).addChoice(choice());
-	if ((**player2).isLost() == 1) {
-		return;
-	}
-	if ((**player2).getLastChoice() == 3) {
-		return;
-	}
-
-	// Stories for when the character wins
-	(**player1).displayEpilogue();
-	(**player2).displayEpilogue();
-
-	*/
-
 }
 
 void displayInstructions() {
@@ -394,67 +199,6 @@ void displayInstructions() {
 		<< endl << "reached 0 or both players get to San Diego."
 		<< endl;
 }
-
-/*int choice() {
-	string choiceString = "";
-	int choice = 0;
-
-	while (1) {
-		cout << endl << ">> ";
-		getline(cin, choiceString);
-
-		while (
-			(!choiceString._Equal("1"))
-			&& (!choiceString._Equal("2"))
-			&& (!choiceString._Equal("Q"))
-			&& (!choiceString._Equal("q"))
-			&& (!choiceString._Equal("Quit"))
-			&& (!choiceString._Equal("quit"))
-			) {
-			cout << "Invalid choice. Select a choice by entering <1> or <2>" << endl << ">> ";
-			getline(cin, choiceString);
-		}
-
-		if (choiceString._Equal("Q") | choiceString._Equal("q") | choiceString._Equal("Quit") | choiceString._Equal("quit")) {
-			cout << endl << "Are you sure that you want to quit?"
-				<< endl << "Type <Y> or <N>" << endl << ">> ";
-			getline(cin, choiceString);
-			while (
-				(!choiceString._Equal("Y"))
-				&& (!choiceString._Equal("y"))
-				&& (!choiceString._Equal("Yes"))
-				&& (!choiceString._Equal("yes"))
-				&& (!choiceString._Equal("N"))
-				&& (!choiceString._Equal("n"))
-				&& (!choiceString._Equal("No"))
-				&& (!choiceString._Equal("no"))
-				) {
-				cout << "Invalid choice. Select a choice by entering <Y> or <N>" << endl << ">> ";
-				getline(cin, choiceString);
-			}
-
-			if (
-				(choiceString._Equal("Y"))
-				| (choiceString._Equal("y"))
-				| (choiceString._Equal("Yes"))
-				| (choiceString._Equal("yes"))
-				) {
-				return 3;
-			}
-			else {
-				continue;
-			}
-
-		}
-		else {
-			break;
-		}
-	}
-	choice = stoi(choiceString);
-
-	cout << endl;
-	return choice;
-}*/
 
 string mainMenuChoice(string &choiceString) throw (bad_input)
 {

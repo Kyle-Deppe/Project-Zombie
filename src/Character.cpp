@@ -1,47 +1,6 @@
 #include "Character.h"
 
-Character::Character(int choice) {
-/*
-	if (choice == 1) {
-		name = "Arnold";				// Arnold Cooper
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}
-	else if (choice == 2) {
-		name = "Clark";					// Clark Kent
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}
-	else if (choice == 3) {
-		name = "Dr. Rivera";			// Dr. Rivera
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}
-	else if (choice == 4) {
-		name = "Smol Pupper";           // Pupper //////////////////////////////////////////////////////////////////// Joel: Choose name
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}
-	else if (choice == 5) {
-		name = "Abigail";				// Abigail Willow
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}
-	else if (choice == 6) {
-		name = "Darwin";				// Darwin Arnold
-		health = 50 + (rand() % 41);
-		supplies = 35 + (rand() % 41);
-		luck = 35 + (rand() % 41);
-	}*/
-}
-
 Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
-	cout << _name << " constructor" << endl;
 	name = _name;
 	health = _health;
 	supplies = _supplies;
@@ -88,12 +47,11 @@ void Character::showStory( int turnNumber )
 	{
 		if( iter->first == turnNumber )
 		{
-			cout << "Turn #: " << iter->first << endl << "Story:" << iter->second << endl;
+			cout << "Story:" << iter->second << "\n" << endl;
 			return;
 		}
 	}
 
-	cout << "NO STORY found for this turn for " << name << endl;
 }
 
 void Character::addHealth(int number)
@@ -136,7 +94,7 @@ void Character::addLuck(int number) {
 
 void Character::addStory( int turn, string story )
 {
-	cout << "Adding Story to " << name << endl;
+	//Add story to map
 	mainStory.emplace( turn, story );
 }
 
@@ -181,7 +139,7 @@ void CharacterList::setupCharacters()
 	 * 	Not every turn needs a story. These are the unique story elements for each character, but each encounter also includes some story specific
 	 * 	to that encounter.
 	 */
-	arnoldCooper->addStory(1, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
+	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
 			"as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
 			" keeing in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to also bring a:"
 			"\n1. Pistol with Ammunition"
@@ -198,11 +156,11 @@ Character* CharacterList::chooseCharacter()
 	displayCharacters();
 
 	getline(cin, choiceString);
-	int charSelect = stoi(choiceString);
+	unsigned int charSelect = stoi(choiceString);
 
 	while( (charSelect < 1 ) || (charSelect > list.size()) )
 	{
-		cout << "Invalid choice. Try again.";
+		cout << "Invalid choice. Try again." << endl;
 		displayCharacters();
 		getline(cin, choiceString);
 		charSelect = stoi(choiceString);
@@ -219,258 +177,3 @@ void CharacterList::displayCharacters()
 	    std::cout << (i + 1) << ". " << list[i]->getName() << endl;
 	}
 }
-
-
-/*Player::Player(int choice) : Character(choice)
-{
-	characterNumber = choice;
-};
-
-void Player::addChoice(int newChoice)
-{
-	if (prevChoices.size() >= 1) {
-		prevChoice = getLastChoice();
-	}
-
-	prevChoices.push_back(newChoice);
-	currentChoice = getLastChoice();
-}
-
-void Player::turn1() {
-	if (characterNumber == 1) {
-		cout << endl << "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk, you listen to the radio"
-			<< endl << "as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
-			<< endl << "keeping in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to"
-			<< endl << "also bring a:"
-			<< endl << "1. Pistol with ammunition."
-			<< endl << "2. Crow bar.";
-	}
-	else if (characterNumber == 2) {
-		cout << endl << "You are Clark Kent, a lawyer in New York City.";
-	}
-	else if (characterNumber == 3) {
-		cout << endl << "You are Dr. Rivera, an ingenious professor in Missouri.";
-	}
-	else if (characterNumber == 4) {
-		cout << endl << "You am pupper.";
-	}
-	else if (characterNumber == 5) {
-		cout << endl << "You are Abigail Willow, a student at Westhall Elementary.";
-	}
-	else if (characterNumber == 6) {
-		cout << endl << "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing.";
-	}
-}
-
-void Player::turn2() {
-	if (characterNumber == 1) {
-		if (prevChoice == 1) {
-			addSupplies(rand() % 11);
-			addLuck((rand() % 11) * -1);
-		}
-		else {
-			addSupplies((rand() % 11) * (-1));
-			addLuck(rand() % 11);
-		}
-		cout << endl << "You've gone outside and started biking west. You reach a bridge that gave out. About to turn around,"
-			<< endl << "you notice the side walls of the bridge are intact. Do you"
-			<< endl << "1. Turn around and go the long way. The bridge might crumble."
-			<< endl << "2. Go across the bridge anyways. It's going to be dark soon.";
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn3() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn4() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn5() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn6() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn7() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn8() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn9() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::turn10() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-
-void Player::displayEpilogue() {
-	if (characterNumber == 1) {
-	}
-	else if (characterNumber == 2) {
-
-	}
-	else if (characterNumber == 3) {
-
-	}
-	else if (characterNumber == 4) {
-
-	}
-	else if (characterNumber == 5) {
-
-	}
-	else if (characterNumber == 6) {
-
-	}
-}
-*/

@@ -66,3 +66,48 @@ void Encounter::endEncounter( int value, Character * player )
 			break;
 	}
 }
+
+EncounterList::EncounterList()
+{
+	setupEncounters();
+}
+
+void EncounterList::setupEncounters()
+{
+	Encounter puppy = Encounter(
+			"You encounter a mean dog. Do you shoot it?",
+			"1. Shoot Dog\n2. Keep dog as pet.",
+			supplies,
+			10,
+			-10,
+			25
+	);
+	encounters.push_back( puppy );
+}
+
+void EncounterList::doEncounter( Character * player )
+{
+
+	try
+	{
+		Encounter encounter = randomEnc( encounters.size() );
+		encounter.doEncounter( player );
+	}
+	catch( int & e )
+	{
+		//No Encounter FOUND!
+		cout << "Somehow the list of encounters became empty. FATAL ERROR" << endl;
+	}
+
+}
+
+Encounter EncounterList::randomEnc( unsigned int n )
+{
+
+	unsigned int f = ( rand() % n );
+	return encounters[f];
+
+	throw -1;
+
+}
+
