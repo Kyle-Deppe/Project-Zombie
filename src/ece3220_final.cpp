@@ -168,12 +168,12 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	cout << "<PLAYER 1>" << endl;
 	player1->showStory( gameTurn );
 	//Player 1's Random Encounter
-	//encounters->doEncounter( player1 );
+	encounters->doEncounter( player1 );
 
 	//Player 2 Turn
 	cout << "<PLAYER 2>" << endl;
 	player2->showStory( gameTurn );
-	//encounters->doEncounter( player2 );
+	encounters->doEncounter( player2 );
 
 	++gameTurn;
 

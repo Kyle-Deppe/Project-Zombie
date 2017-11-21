@@ -117,7 +117,7 @@ void CharacterList::setupCharacters()
 	Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( clarkKent );
 
-	Character * drRivera = new Character( "Louis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * drRivera = new Character( "Luis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( drRivera );
 
 	Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
@@ -139,13 +139,32 @@ void CharacterList::setupCharacters()
 	 * 	Not every turn needs a story. These are the unique story elements for each character, but each encounter also includes some story specific
 	 * 	to that encounter.
 	 */
+
+	//ARNOLD'S STORIES!
 	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
 			"as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
 			" keeing in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to also bring a:"
 			"\n1. Pistol with Ammunition"
 			"\n2. Crow Bar"
-			);
+	);
 	arnoldCooper->addStory(10, "A story for turn 10");
+
+	//CLARK KENT'S STORIES
+	clarkKent->addStory(0, "You are Clark Kent, a lawyer in New York City. Everyone outside is scrambling to get indoors as the zombies "
+			"spread throughout the city. You're just sipping on some coffee waiting for your private chopper to arrive."
+	);
+
+	//LUIS RIVERA'S STORIES
+	drRivera->addStory(0, "You are Dr. Rivera, an ingenious professor in Missouri.");
+
+	//LIL' PUPPER'S STORIES
+	lilPupper->addStory(0, "You are lil' pupper!");
+
+	//ABIGAIL WILLOW'S STORIES
+	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Elementary.");
+
+	//DARNWIN ARNOLD'S STORIES
+	darwinArnold->addStory(0, "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing.");
 
 }
 
@@ -156,14 +175,20 @@ Character* CharacterList::chooseCharacter()
 	displayCharacters();
 
 	getline(cin, choiceString);
-	unsigned int charSelect = stoi(choiceString);
+	unsigned int charSelect = 0;
 
-	while( (charSelect < 1 ) || (charSelect > list.size()) )
+	while( charSelect == 0 )
 	{
-		cout << "Invalid choice. Try again." << endl;
-		displayCharacters();
-		getline(cin, choiceString);
-		charSelect = stoi(choiceString);
+		try
+		{
+			charSelect = charChoice( choiceString );
+		}
+		catch( ... )
+		{
+			cout << "Invalid choice. Try agin." << endl;
+			displayCharacters();
+			getline(cin, choiceString);
+		}
 	}
 
 	--charSelect;
@@ -174,6 +199,33 @@ Character* CharacterList::chooseCharacter()
 
 	return rtn;
 
+}
+
+int CharacterList::charChoice( string choice ) throw( int )
+{
+	if( choice.empty() )
+	{
+		throw 1;
+	}
+
+	if( !isdigit(choice[0]) )
+	{
+		throw 2;
+	}
+
+	unsigned int charNum = stoi( choice );
+
+	if( charNum < 1 )
+	{
+		throw 3;
+	}
+
+	if( charNum > list.size() )
+	{
+		throw 4;
+	}
+
+	return charNum;
 }
 
 void CharacterList::displayCharacters()

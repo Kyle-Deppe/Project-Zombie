@@ -18,16 +18,18 @@ class Encounter
 	private:
 		string story;
 		string choice;
-		string endStory;
+		string passStory;
+		string failStory;
 		ResultType type;
 		int passValue;
 		int failValue;
 		int odds;
 
 		void endEncounter( int value, Character * player );
+		int validChoice( string choiceStr ) throw ( int );
 
 	public:
-		Encounter( string _story, string _choice, ResultType _type, int _passValue, int _failValue, int _odds );
+		Encounter( string _story, string _choice, ResultType _type, int _passValue, int _failValue, string _passStory, string _failStory, int _odds );
 		void doEncounter( Character * player );
 		virtual ~Encounter();
 };
@@ -38,7 +40,7 @@ private:
 	vector <Encounter> encounters;
 	void setupEncounters();
 	void deleteEncounter();
-	Encounter randomEnc( unsigned int );
+	int randomEnc( unsigned int );
 public:
 	void doEncounter( Character * player );
 	EncounterList();

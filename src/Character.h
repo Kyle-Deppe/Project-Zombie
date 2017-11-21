@@ -75,6 +75,7 @@ class CharacterList
 	private:
 		vector <Character*> list;
 		void setupCharacters();
+		int charChoice( string choice ) throw( int );
 	protected:
 	public:
 		CharacterList();
