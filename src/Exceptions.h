@@ -16,3 +16,17 @@ class bad_input: public std::exception
 		}
 
 };
+
+class fileNotOpened : public std::exception
+{
+protected:
+	string msg = "File could not be opened!";
+
+public:
+	explicit fileNotOpened() {}
+	virtual ~fileNotOpened() throw() {}
+	virtual const char * what() const throw()
+	{
+		return msg.c_str();
+	}
+};

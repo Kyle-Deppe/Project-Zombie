@@ -1,5 +1,6 @@
 #include "Character.h"
 
+
 Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
 	name = _name;
 	health = _health;
@@ -192,7 +193,6 @@ Character* CharacterList::chooseCharacter()
 	}
 
 	--charSelect;
-	cout << "Select:" << charSelect << endl;
 
 	Character * rtn = list[charSelect];
 	list.erase( list.begin() + ( charSelect ) );

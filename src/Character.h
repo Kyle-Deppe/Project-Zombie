@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 using namespace std;
@@ -19,7 +20,7 @@ protected:
 	std::map<int, string> mainStory;		// I didn't use this. It might be useful but it seems like we can just hard code our stories.
 											// (See Character.cpp)
 public:
-	// Character();
+	Character() {}
 	Character( string _name, int _health, int _supplies, int _luck );
 	virtual ~Character();
 
@@ -37,38 +38,27 @@ public:
 	void showStory( int turnNumber );
 
 	void addStory(int turn, string story);
+
+	friend std::ostream& operator<<(std::ostream & os, const Character & player )
+	{
+		cout << "Saving" << endl;
+		os << player.name << '\n';
+		os << player.health << '\n';
+		os << player.luck << '\n';
+		os << player.supplies << '\n';
+		return os;
+	}
+
+	friend std::istream& operator>>(std::istream & is, Character & player)
+	{
+		is >> player.name;
+		is >> player.health;
+		is >> player.luck;
+		is >> player.supplies;
+		return is;
+	}
+
 };
-
-
-
-/*class Player : public Character {
-private:
-	int characterNumber;
-	int currentChoice;
-	int prevChoice;
-	vector<int> prevChoices;
-	bool loseGame = 0;
-protected:
-public:
-	Player(int choice);
-
-	bool isLost() { return loseGame; }
-	int getLastChoice() { return prevChoices[prevChoices.size() - 1]; }
-	void addChoice(int newChoice);
-
-	void turn1();
-	void turn2();
-	void turn3();
-	void turn4();
-	void turn5();
-	void turn6();
-	void turn7();
-	void turn8();
-	void turn9();
-	void turn10();
-
-	void displayEpilogue();
-};*/
 
 class CharacterList
 {

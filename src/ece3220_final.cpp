@@ -4,6 +4,8 @@
 //============================================================================
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <cstdlib>
 #include <ctime>
 #include "Character.h"
@@ -17,6 +19,8 @@ void runGame();
 void newGame(Character **, Character **);
 void playGame(Character *, Character *, int * , EncounterList *  );
 void displayInstructions();
+void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened );
+void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened );
 
 string mainMenuChoice(string &choiceString) throw ( bad_input );
 
@@ -41,6 +45,7 @@ void runGame()
 	string choiceString = "0";
 	int gameState = 0;
 	int menuChoice = 0;
+	unsigned int resTurn = 0;
 
 	Character * player1 = NULL, *player2 = NULL;
 	EncounterList * encounters = new EncounterList();
@@ -71,7 +76,8 @@ void runGame()
 					displayInstructions();
 					break;
 				case 3:
-					gameState = -1;
+					gameState = 1;
+					loadGame( &resTurn, &player1, &player2 );
 					break;
 			}
 
@@ -114,6 +120,96 @@ void runGame()
 	//When all is lost...
 	delete( player1 );
 	delete( player2 );
+}
+
+void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened )
+{
+
+	cout << "Game Saved." << endl;
+
+	string fileName = "save.dat";
+
+	//Create new file input stream
+	ofstream write;
+	write.exceptions ( ofstream::failbit | ofstream::badbit );
+
+	try
+	{
+		write.open( fileName );
+
+		//Create references os that we can use an operator
+		Character &p1 = *player1;
+		Character &p2 = *player2;
+
+		//Write the data for each player to the file
+		write << p1;
+		write << p2;
+
+		write.close();
+	}
+	catch ( ifstream::failure & e ) {
+		//The file could not be read
+		std::cerr << "Exception opening/reading/closing file\n";
+		cout << e.what() << endl;
+	}
+	catch(...)
+	{
+		std::cerr << "File Could Not Be Opened!\n";
+	}
+
+}
+
+void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
+{
+
+	cout << "Game Saved." << endl;
+
+	string fileName = "save.dat";
+
+	//Create new file input stream
+	ifstream read;
+	read.exceptions ( ifstream::failbit | ifstream::badbit );
+
+	try
+	{
+		read.open( fileName );
+
+		read >> *turn;
+
+		//Create a new Player 1 and populate data
+		Character save1, save2;
+
+		read >> save1;
+		read >> save2;
+
+		save1.printPlayerData();
+		save2.printPlayerData();
+
+		//player2 >> read;
+
+		/*write << player1->getName() << endl;
+		write << player1->getHealth() << endl;
+		write << player1->getLuck() << endl;
+		write << player1->getSupplies() << endl;
+
+		//Write Player2 Data
+		write << player2->getName() << endl;
+		write << player2->getHealth() << endl;
+		write << player2->getLuck() << endl;
+		write << player2->getSupplies() << endl;*/
+
+		read.close();
+	}
+	catch ( ifstream::failure & e ) {
+		//The file could not be read
+		std::cerr << "Exception opening/reading/closing file\n";
+		cout << e.what() << endl;
+	}
+	catch(...)
+	{
+		std::cerr << "File Could Not Be Opened!\n";
+	}
+
 }
 
 void newGame(Character ** player1, Character ** player2)
@@ -184,6 +280,9 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	}
 
 	cout << endl << endl;
+
+	saveGame( gameTurn, player1, player2 );
+
 }
 
 void displayInstructions() {
