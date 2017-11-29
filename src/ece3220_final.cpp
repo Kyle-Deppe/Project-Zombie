@@ -113,16 +113,24 @@ void runGame()
 			}
 
 		}
-		//Quitting state
+		//Player Died Gamestate
 		else if ( gameState == 2 )
 		{
-			/*TODO: SAVE THE GAME!!!*/
+			if( ( player1->getHealth() == 0 ) || ( player1->getSupplies() == 0 ) )
+			{
+				cout << "Player 2 won!" << endl;
+			}
+			else if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
+			{
+				cout << "Player 1 won!" << endl;
+			}
 			gameState = -1;
 		}
 		//WIN GAME state
 		else if ( gameState == 3 )
 		{
-			cout << "You've reached the end (for now)!" << endl;
+
+			cout << "Thanks for playing Generic Zombie Game 7.9!" << endl;
 			//TODO: Add cake. There will be cake.
 			gameState = -1;
 		}
@@ -282,10 +290,30 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	player2->showStory( gameTurn );
 	encounters->doEncounter( player2 );
 
+	//IF PLAYERS ARE DEAD
+	if( ( player1->getHealth() == 0 ) || ( player1->getSupplies() == 0 ) )
+	{
+		cout << "Player 1 has died!" << endl;
+		*gameState = 3;
+	}
+	if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
+	{
+		cout << "Player 2 has died!" << endl;
+		*gameState = 3;
+	}
+
 	++gameTurn;
 
-	if( gameTurn > 15 )
+	if( gameTurn == 15 )
 	{
+		//Player 1 Final Story
+		cout << "<PLAYER 1>" << endl;
+		player1->showStory( gameTurn );
+
+		//Player 2 Final Story
+		cout << "<PLAYER 2>" << endl;
+		player2->showStory( gameTurn );
+
 		//Set gamestate to the ending state!
 		*gameState = 3;
 	}
