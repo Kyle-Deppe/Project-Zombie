@@ -24,12 +24,13 @@ class Encounter
 		int passValue;
 		int failValue;
 		int odds;
+		unsigned int rightChoice;
 
 		void endEncounter( int value, Character * player );
 		int validChoice( string choiceStr ) throw ( int );
 
 	public:
-		Encounter( string _story, string _choice, ResultType _type, int _passValue, int _failValue, string _passStory, string _failStory, int _odds );
+		Encounter( string _story, string _choice, ResultType _type, int _passValue, int _failValue, string _passStory, string _failStory, int _odds, unsigned int rightChoice );
 		void doEncounter( Character * player );
 		virtual ~Encounter();
 };

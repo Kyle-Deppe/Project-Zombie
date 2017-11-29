@@ -51,7 +51,9 @@ public:
 
 	friend std::istream& operator>>(std::istream & is, Character & player)
 	{
-		is >> player.name;
+		string readName;
+		getline( is, readName );
+		getline( is, player.name, '\n' );
 		is >> player.health;
 		is >> player.luck;
 		is >> player.supplies;

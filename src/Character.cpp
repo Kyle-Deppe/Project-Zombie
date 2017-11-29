@@ -144,9 +144,7 @@ void CharacterList::setupCharacters()
 	//ARNOLD'S STORIES!
 	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
 			"as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
-			" keeing in mind that your truck is out of gas and you need to pack lightly. After food and water, you decide to also bring a:"
-			"\n1. Pistol with Ammunition"
-			"\n2. Crow Bar"
+			" keeing in mind that your truck is out of gas and you need to pack lightly."
 	);
 	arnoldCooper->addStory(10, "A story for turn 10");
 

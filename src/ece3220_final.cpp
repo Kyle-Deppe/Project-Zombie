@@ -17,12 +17,12 @@ using namespace std;
 void setupCharacters(Character **, Character **);
 void runGame();
 void newGame(Character **, Character **);
-void playGame(Character *, Character *, int * , EncounterList *  );
+void playGame(Character *, Character *, int * , EncounterList *, unsigned int = 0 );
 void displayInstructions();
 void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened );
 void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened );
 
-string mainMenuChoice(string &choiceString) throw ( bad_input );
+string Choice(string &choiceString) throw ( bad_input );
 
 
 void setupCharacters(Character ** player1, Character ** player2)
@@ -57,7 +57,7 @@ void runGame()
 		{
 			try
 			{
-				choiceString = mainMenuChoice(choiceString);
+				choiceString = Choice(choiceString);
 			}
 			catch( bad_input & e )
 			{
@@ -73,11 +73,22 @@ void runGame()
 					newGame( &player1, &player2 );
 					break;
 				case 2:
-					displayInstructions();
+					try
+					{
+						loadGame( &resTurn, &player1, &player2 );
+						playGame( player1, player2, &gameState, encounters, resTurn );
+						gameState = 1;
+					}
+					catch( ... )
+					{
+						gameState = 3;
+					}
 					break;
 				case 3:
-					gameState = 1;
-					loadGame( &resTurn, &player1, &player2 );
+					displayInstructions();
+					break;
+				case 4:
+					gameState = 3;
 					break;
 			}
 
@@ -124,9 +135,6 @@ void runGame()
 
 void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened )
 {
-
-	cout << "Game Saved." << endl;
-
 	string fileName = "save.dat";
 
 	//Create new file input stream
@@ -136,6 +144,9 @@ void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileN
 	try
 	{
 		write.open( fileName );
+
+		//Write the turn number to the filw
+		write << turn << endl;
 
 		//Create references os that we can use an operator
 		Character &p1 = *player1;
@@ -162,7 +173,7 @@ void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileN
 void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
 {
 
-	cout << "Game Saved." << endl;
+	cout << "Loading Game." << endl;
 
 	string fileName = "save.dat";
 
@@ -177,38 +188,35 @@ void loadGame( unsigned int * turn, Character ** player1, Character ** player2 )
 		read >> *turn;
 
 		//Create a new Player 1 and populate data
-		Character save1, save2;
+		Character * save1 = new Character();
+		Character * save2 = new Character();
 
-		read >> save1;
-		read >> save2;
-
-		save1.printPlayerData();
-		save2.printPlayerData();
-
-		//player2 >> read;
-
-		/*write << player1->getName() << endl;
-		write << player1->getHealth() << endl;
-		write << player1->getLuck() << endl;
-		write << player1->getSupplies() << endl;
-
-		//Write Player2 Data
-		write << player2->getName() << endl;
-		write << player2->getHealth() << endl;
-		write << player2->getLuck() << endl;
-		write << player2->getSupplies() << endl;*/
+		read >> *save1;
+		read >> *save2;
 
 		read.close();
+
+		cout << "Loaded Players" << endl;
+		//save1->printPlayerData();
+		//save2->printPlayerData();
+
+		*player1 = save1;
+		*player2 = save2;
+
 	}
 	catch ( ifstream::failure & e ) {
 		//The file could not be read
 		std::cerr << "Exception opening/reading/closing file\n";
 		cout << e.what() << endl;
+		throw fileNotOpened();
 	}
 	catch(...)
 	{
-		std::cerr << "File Could Not Be Opened!\n";
+		std::cerr << "File Could Not Be Read!\n";
+		throw fileNotOpened();
 	}
+
+	cout << "Game Loaded!\n" << endl;
 
 }
 
@@ -253,12 +261,15 @@ void newGame(Character ** player1, Character ** player2)
 
 	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
 }
-void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters )
+
+void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters, unsigned int resTurn )
 {
-	static unsigned int gameTurn = 0;
+
+
+	static unsigned int gameTurn = resTurn;
 
 	//Start Turn Message
-	cout << "Starting Turn: " << gameTurn << endl;
+	cout << "You've Survived to Turn: " << gameTurn << endl;
 
 	//Player 1 Turn
 	cout << "<PLAYER 1>" << endl;
@@ -285,7 +296,8 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 
 }
 
-void displayInstructions() {
+void displayInstructions()
+{
 	cout << endl << "Instructions:"
 		<< endl << "The world has been overrun by zombies. Last night a radio broadcast announced that"
 		<< endl << "there's a safe haven in San Diego, California. Now, all of the survivors in America"
@@ -297,17 +309,18 @@ void displayInstructions() {
 		<< endl;
 }
 
-string mainMenuChoice(string &choiceString) throw (bad_input)
+string Choice(string &choiceString) throw (bad_input)
 {
 	cout << endl << "Please select an option: "
 		<< endl << "1. Play Game"
-		<< endl << "2. See Instructions"
-		<< endl << "3. Exit"
+		<< endl << "2. Load Game"
+		<< endl << "3. See Instructions"
+		<< endl << "4. Exit"
 		<< endl << ">> ";
 
 	getline(cin, choiceString);
 
-	if( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
+	if( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") && (choiceString != "4") )
 	{
 		throw bad_input();
 	}
