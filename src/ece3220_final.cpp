@@ -284,7 +284,7 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 
 	++gameTurn;
 
-	if( gameTurn > 8 )
+	if( gameTurn > 15 )
 	{
 		//Set gamestate to the ending state!
 		*gameState = 3;
