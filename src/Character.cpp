@@ -172,7 +172,7 @@ void CharacterList::setupCharacters()
 	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Elementary.");
 
 	//DARNWIN ARNOLD'S STORIES
-	darwinArnold->addStory(0, "You are Darwin Arnold, some weird survivalist/conspiracy theorist guy that Tsiania sucked at describing.");
+	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name.");
 
 }
 
