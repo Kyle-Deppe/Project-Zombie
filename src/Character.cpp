@@ -169,8 +169,11 @@ void CharacterList::setupCharacters()
 	);
 
 	//ABIGAIL WILLOW'S STORIES
-	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Elementary.");
-
+	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Middle School. You're 13 years old carrying only whats in your backpack and your phone."
+								"The Zombies don't wait for you to get home before they attack. You need to get out of the school before you are found");
+	abigailWillow->addStory(4, "You have escaped the building to the outdoors and its chaos. From a crashed car next to the building you hear from the radio about a Fort Osage"
+								"trying to save citizens of the city. Without a doubt look up directions and then look for transportation.");
+	abigailWillow->addStory(10, "Stealing a street bike from the store you start on your way avoiding the crowded streets to back alleys. You are prideful and continue to bike at a steady pace");
 	//DARNWIN ARNOLD'S STORIES
 	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name.");
 
