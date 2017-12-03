@@ -176,9 +176,26 @@ void CharacterList::setupCharacters()
 		"You follow close behind him until you both take shelter in a house that was left open. 'I'm Alex' he says once we caught our breath. Afterward you both head you seperate ways. You only ddepend on yourself");
 	abigailWillow->addStory(10, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
 		"People are desperate");
-	abigailWillow->addStory(13,"" );
+	abigailWillow->addStory(13,"You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
+		"You refuse to travel at night time, wild animals are becoming braver as they realize humans aren't the top predators anymore, and humans have fallen back to the old justice ways.");
+	abigailWillow->addStory(15, "At the rising dawn you see the Fort with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
+		"As the gates open to you and a military personel walks out to you, you can't help but cry. A few questions and a medical exam later you ask for your father. Without answering the doctor leads you to the barracks and there he is."
+		" Shouting 'Father' you run towards him and are picked up in a strong embrace while crying. 'You're actually alive, you made it here to safety...'");
 	//DARNWIN ARNOLD'S STORIES
-	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name.");
+	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name. No one believed in your learning and now they will all regret it hahaha. This is the time to prove yourself"
+		"This is your time to shine. You aren't at your safe place where your wife is since you were delivering some cargo as a truck driver. But you will be there in the end, surviving.");
+	darwinArnold->addStory(4,"'Oh my gosh this world sucks' you think to yourself. You thought you were prepared but now that it's happening, you are questioning everything you know. You start writing the field guid to zombies "
+		"to make time go by faster whenever you're stopping for the night when the light is allowed");
+
+	darwinArnold->addStory(10, "You witness a large community of humans get torn to shreds by zombies and your sanity starts to decrease. You thought you could escape this reality at night in your sleep but you only recieve nightmares. "
+	"You continue your journey home to your wife...");
+	if (darwinArnold->getHealth() <= 30)
+		darwinArnold->addStory(13, "You can no longer sleep and you are constantly hearing voices whether they are screams of pain, groans of zombies, or your inner demon. You are contemplating giving up now...");
+	else
+		darwinArnold->addStory(13, "You do basic work outs to get you tired so you can gain rest and remind yourself of your wife. This works and you gain some of your sanity back. The journey has been long but you are holding on");
+	
+	darwinArnold->addStory(15, "You see your secluded home a few hundred meters away. Sprinting the remainder of the way you feel your hope rise seeing majority of the animals still looking healthy. You run to the fence and shake the bell"
+		" longing to see your wife. You see her face appear from inside the lookout tower and you can help but yell her name 'Susan! I'm Here!'");
 
 }
 
