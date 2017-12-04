@@ -285,6 +285,56 @@ void EncounterList::setupEncounters()
 			1
 	);
 
+	Encounter fridge = Encounter(
+			"You find an old fridge with food inside. It's not cold, but it looks like it's sealed. You decide to eat, but do you...",
+			"\n1. Eat the yogurt? \n2. Eat the stew?",
+			health,
+			10,
+			-10,
+			"Luckily, you're able to digest the food, and except for some bad gas, it really makes you feel better!",
+			"Eating old food wasn't your greatest idea... you suffer painful diarrhea for days",
+			25,
+			2
+	);
+
+	Encounter shrooms = Encounter(
+			"While wandering along you stumble across a lovely patch of mushrooms to eat. You...",
+			"\n1. Eat them raw? \n2. Roast them up first!",
+			health,
+			5,
+			-15,
+			"You eat the mushrooms and it reminds you of days past... yum :)",
+			"Did you really just eat wild mushrooms? Wow... That was a bad move. POISoNED!",
+			40,
+			2
+	);
+
+	Encounter mizzou = Encounter(
+			"On your way to Sanctuary, you stumble across the ruins of one of the greatest instituions that ever was..."
+			"The University of Missouri. Looking at Naka Hall (or EBW because everyone is still calling it that) you decide to...",
+			"\n1. Search the basement, that's where they're hiding the good stuff. \n2. Go upstairs! I bet Doctor Rivera has good tastes!",
+			supplies,
+			20,
+			-5,
+			"You're lucky enough to find some delicious snacks in the offices!",
+			"You leave the building without a single useful bit of gear or food, and on your way out the door falls on you, because this university hates you.",
+			60,
+			2
+	);
+
+	Encounter puppy = Encounter(
+			"In the shrubs in front of you, you hear some growling... Scared of what it might be, you ready yourself for a fight! From within the brush you see a dog emerge and charge towards you. Before you can even react, it is licking your nose. Do you...",
+			"\n1. Scratch his ear and call him Ralph. \n2. Scratch his ear and call him Rover",
+			health,
+			5,
+			-10,
+			"This puppy is so thrilled at his new name! He makes you feel so happy and rejuvinated!",
+			"Angry with the ugly name you gave him, the dog bites your little toe and runs away.",
+			50,
+			1
+	);
+
+
 	encounters.push_back( bridge );
 	encounters.push_back( woods );
 	encounters.push_back( randZombie );
@@ -294,6 +344,10 @@ void EncounterList::setupEncounters()
 	encounters.push_back( drown );
 	encounters.push_back( car );
 	encounters.push_back( cake );
+	encounters.push_back( fridge );
+	encounters.push_back( shrooms );
+	encounters.push_back( mizzou );
+	encounters.push_back( puppy );
 
 }
 
