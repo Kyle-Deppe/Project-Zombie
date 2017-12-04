@@ -328,8 +328,95 @@ void EncounterList::setupEncounters()
 			health,
 			5,
 			-10,
-			"This puppy is so thrilled at his new name! He makes you feel so happy and rejuvinated!",
+			"This puppy is so thrilled at his new name! He makes you feel so happy and rejuvenated!",
 			"Angry with the ugly name you gave him, the dog bites your little toe and runs away.",
+			50,
+			1
+	);
+
+	Encounter mother = Encounter(
+			"In the distance you hear a growl... but this one is familiar. As the growl draws closer you can see the face becoming clearer. It's your zombified mother. As grumpy as aways, she staggers towards you, a little worse for wear. You still don't have the heart to let her go on, so you...",
+			"\n1. Decide to cut her head off. \n2. Hit her with one blast of a shotgun.",
+			health,
+			0,
+			-20,
+			"Her head is gone. The nagging is gone. You're finally free."
+			"You hesitate just a moment to long and she gets one last bite down on you before you put an end to her. You've escaped that monster, but not without some damage.",
+			25,
+			2
+	);
+
+	Encounter gang = Encounter(
+			"Before you can react, you are surrounded by a gang of survivor armed to the teeth, your only option is to talk your way out. You...",
+			"\n1. Pretend that you don't speak English and hope for mercy. \n2. Offer them some of your best supplies to spare your life.",
+			supplies,
+			-10,
+			-25,
+			"The gang decides to have mercy on you and let's you go and only takes a few of your supplies",
+			"The gang laughs in your face before stripping you of most of your possessions.",
+			30,
+			1
+	);
+
+	Encounter cpp = Encounter(
+			"You find a computer that has information to help you get to sanctuary, but you have to write some C++ because. You...",
+			"\n1. Write some classes because you're a boss. \2. Write a rotate ellipse function very poorly",
+			health,
+			0,
+			-10,
+			"You write the code and get the information you need!",
+			"All this coding has been so taxing on your weak eyes...",
+			75,
+			2
+	);
+
+	Encounter survivors = Encounter(
+			"The sound of an engine roars closer and closer to you as you duck for cover behind a rock. The vehicles stop "
+			"right in front of you and several armed men and women emerge. They order you to come out. After considering running, you decide that "
+			"surrendering is your best option. You come out and they greet you with a smile. You're welcomed to their camp for a night of rest.\n"
+			"They are a group of survivors from that are trying to build their own colony in the North. They offer you some supplies, do you...",
+			"\n1. Graciously accept the supplies? \n2. Try to convince them to give you even more",
+			supplies,
+			25,
+			15,
+			"They decide to give you what they were offering and a little extra because you're a little extra ;)",
+			"They give you the supplies that they offered you and send you on your way.",
+			25,
+			1
+	);
+
+	Encounter water = Encounter(
+			"The thirst has been setting in and you know that you need to find some water soon. You find a small puddle and decide to drink the water. Do you...",
+			"\n1. Try to filter it through a piece of cloth \n2. Drink the water as is",
+			health,
+			5,
+			-5,
+			"Thank goodness you got some water that was clean! You're feeling a little better",
+			"The stale water wreaks havoc on your system and you fall dangerously ill.",
+			20,
+			1
+	);
+
+	Encounter child = Encounter(
+			"As you make your way through the city, a little girl starts making her way towards you. You don't have the heart to kill the child. So you...",
+			"\n1. Run away quickly and hope the girl doesn't move fast. \n 2. Hide in a nearby building until she passes",
+			supplies,
+			0,
+			-10,
+			"You watch as the little creeps along slowly, luckily, not noticing you.",
+			"The little girl makes eye contact with you, and to your surprise she moves like lightning. She attacks you and gets a bite in before you can put her down",
+			55,
+			2
+	);
+
+	Encounter store = Encounter(
+			"In a small town you come across a convenient store. The windows are barred and the door is locked, but there are a lot of supplies inside. You're going to try to break in, do you...",
+			"\n1. Go through the window. \n2. Try to crawl under the building",
+			health,
+			10,
+			-10,
+			"You manage to get inside and find some delicious Hostess (not a sponsor) snacks!",
+			"While trying to break in, you cut yourself on some rust and develop tetanus!",
 			50,
 			1
 	);
@@ -348,6 +435,13 @@ void EncounterList::setupEncounters()
 	encounters.push_back( shrooms );
 	encounters.push_back( mizzou );
 	encounters.push_back( puppy );
+	encounters.push_back( mother );
+	encounters.push_back( gang );
+	encounters.push_back( cpp );
+	encounters.push_back( survivors );
+	encounters.push_back( water );
+	encounters.push_back( child );
+	encounters.push_back( store );
 
 }
 

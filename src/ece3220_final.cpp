@@ -304,7 +304,7 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 
 	++gameTurn;
 
-	if( gameTurn == 15 )
+	if( gameTurn == 10 )
 	{
 		//Player 1 Final Story
 		cout << "<PLAYER 1>" << endl;

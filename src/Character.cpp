@@ -158,10 +158,10 @@ void CharacterList::setupCharacters()
 
 	//LIL' PUPPER'S STORIES
 	lilPupper->addStory( 0, "You are lil' pupper! You're the cutest 'lil guy in town <3, but underneath that fluffy coat of fur, you have vicious, survival skills.");
-	lilPupper->addStory( 4, "The zombie apocolypse seems completely wonderful to you! As the jolly 'lil doggy you are, you trot along over the hills towards Sanctuary." );
-	lilPupper->addStory( 10, "You've made it so far! You yelp and bark with so much joy and reward yourself by having a good 'ol time chasing your 'lil tail!" );
-	lilPupper->addStory( 13, "Although the zombie growls and delicious smells are alluring to you, you point your 'lil nose forward and push ahead, determined to wag your 'lil tail in safety once again!" );
-	lilPupper->addStory( 15, "The smell of good 'ol Purina Puppy Chow (not a sponsor) fills your nostrils as you approach the gate to Sanctuary. You're welcomed in and the humans there love you."
+	lilPupper->addStory( 2, "The zombie apocolypse seems completely wonderful to you! As the jolly 'lil doggy you are, you trot along over the hills towards Sanctuary." );
+	lilPupper->addStory( 4, "You've made it so far! You yelp and bark with so much joy and reward yourself by having a good 'ol time chasing your 'lil tail!" );
+	lilPupper->addStory( 7, "Although the zombie growls and delicious smells are alluring to you, you point your 'lil nose forward and push ahead, determined to wag your 'lil tail in safety once again!" );
+	lilPupper->addStory( 10, "The smell of good 'ol Purina Puppy Chow (not a sponsor) fills your nostrils as you approach the gate to Sanctuary. You're welcomed in and the humans there love you."
 			"\nFor weeks they can't seem to keep their hands off of you, and you love it! You wag your tail and relax day and night. Then one day "
 			"as you're reclining by the fire butcher Doug comes over to play with you. He throws your toy over into his shop and you chase it down "
 			"to bring back and make him proud. But as you go into the shop and start sniffing around, you hear the door close and Butcher Doug picks you up "
