@@ -176,17 +176,6 @@ void EncounterList::setupEncounters()
 	 * 	);
 	 *
 	 */
-	Encounter puppy = Encounter(
-		"You encounter a mean dog. Do you shoot it?",
-		"1. Shoot Dog\n2. Keep dog as pet.",
-		supplies,
-		10,
-		-10,
-		"You're a monster.",
-		"Good choice :)",
-		25,
-		1
-	);
 
 	Encounter bridge = Encounter(
 		"You reach a bridge that gave out. About to turn around, you notice the side walls of the bridge are intact. Do you: ",
@@ -248,12 +237,63 @@ void EncounterList::setupEncounters()
 			1
 	);
 
-	encounters.push_back( puppy );
+	Encounter falling = Encounter(
+			"While crossing a bridge on the way to Santuary, it gives way and you slip. Hanging on by only a thread, do you...",
+			"\n1. Reach up quickly before the wire snaps? \n2. Try to throw your gear up to lessen the weight?",
+			health,
+			-5,
+			-20,
+			"You manage to pull yourself up and continue on with only a few cut and bruises.",
+			"Despite your best efforts, the wire snaps and you plunge into the water. You hit it hard and swallow a lot of water. Luckily, you manage to make it to the shore, but you're hurt badly.",
+			40,
+			2
+	);
+
+	Encounter drown = Encounter(
+			"Zombies surround you on every side!!! The only way to go is through the river. Quickly looking for options, you see that you can...",
+			"\n1. Swim. Those high-school classes better to pay off! \n2. Grab the log next to the river and try to float across! YOU CAN'T SWIM!!!",
+			supplies,
+			-5,
+			-25,
+			"Struggling for breath, you barely make it across the water. You lost a little gear to the water, but at least you're free of the zombies... \n\n...for now.",
+			"You see the log sink down into the water from it's weight. You are pulled under by the current and find yourself down the river, free from the zombies, but missing a lot of your supplies!",
+			70,
+			1
+	);
+
+	Encounter car = Encounter(
+			"You find an old car that seems broken down, but it has gas! Do you...",
+			"\n1. Use your deus ex machina mechanic skills to fix that bad boy up for a faster ride? \n2. Kick it until it turns on",
+			supplies,
+			50,
+			0,
+			"Somehow, you manage to get the best rolling and you continue on!",
+			"As expected, you fail. With a heavy heart, you continue on...",
+			10,
+			2
+	);
+
+	Encounter cake = Encounter(
+			"You find cake. You must eat the cake. How will you eat the cake?",
+			"\n1. Eat cake with fingers. \n2. Eat cake with face",
+			health,
+			-5,
+			-10,
+			"The cake is a lie.",
+			"The cake is a lie.",
+			50,
+			1
+	);
+
 	encounters.push_back( bridge );
 	encounters.push_back( woods );
 	encounters.push_back( randZombie );
 	encounters.push_back( ladder );
 	encounters.push_back( sleep );
+	encounters.push_back( falling );
+	encounters.push_back( drown );
+	encounters.push_back( car );
+	encounters.push_back( cake );
 
 }
 
