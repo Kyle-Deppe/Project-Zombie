@@ -41,7 +41,6 @@ public:
 
 	friend std::ostream& operator<<(std::ostream & os, const Character & player )
 	{
-		cout << "Saving" << endl;
 		os << player.name << '\n';
 		os << player.health << '\n';
 		os << player.luck << '\n';

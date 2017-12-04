@@ -71,7 +71,6 @@ void Encounter::doEncounter( Character * player )
 	//2. Add +10 if the player chose the best choice on the encounter
 	if( choiceNum == rightChoice )
 	{
-		cout << "Good choice bonus!" << endl;
 		dieRoll += 10;
 	}
 
