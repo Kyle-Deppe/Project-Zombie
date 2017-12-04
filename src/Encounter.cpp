@@ -340,7 +340,7 @@ void EncounterList::setupEncounters()
 			health,
 			0,
 			-20,
-			"Her head is gone. The nagging is gone. You're finally free."
+			"Her head is gone. The nagging is gone. You're finally free.",
 			"You hesitate just a moment to long and she gets one last bite down on you before you put an end to her. You've escaped that monster, but not without some damage.",
 			25,
 			2
