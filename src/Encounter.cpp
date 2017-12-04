@@ -212,9 +212,48 @@ void EncounterList::setupEncounters()
 			1
 	);
 
+	Encounter randZombie = Encounter(
+			"Behind you, you start to hear footsteps drawing closer. Your turn around quickly and see a zombie making his way to you. He's too close to escape. Do you...",
+			"\n1. Punch at his face and try to take him out? \n2. Try to trip him so you can make an escape?",
+			health,
+			0,
+			-20,
+			"You manage to take the zombie down and get away safely!",
+			"You have taken a bad bite, but the zombies appetite seems satisfied. You make your escape as he feasts.",
+			40,
+			2
+	);
+
+	Encounter ladder = Encounter(
+			"You come across a lonely building that looks like it was held up by survivors at one point. On the roof you see what could be supplies. Do you...",
+			"\n1. Climb the rusty ladder on the side of the building? \n2. Attempt to scale the wall?",
+			supplies,
+			10,
+			-10,
+			"You reach the top of the roof and are lucky enought to find some leftover supplies from the previous survivors.",
+			"You try to climb up but the building begins to crumble and you fall, breaking some of your own supplies. Zombies are fast approaching, so you move on.",
+			50,
+			1
+	);
+
+	Encounter sleep = Encounter(
+			"You're feeling too tired to move on and you need to rest. To your right you see a small crevice to hide in and to your left you see some trees you could climb in to sleep. Do you...",
+			"\n1. Hide in the cave? Staying out of sight would be best! \n2. Climb the tree? nothing can reach you there.",
+			supplies,
+			0,
+			-15,
+			"You awaken, feeling refreshed, and gather your belongings.",
+			"During the night some of your food was dragged away by animals. Nevertheless, you get up and move on.",
+			30,
+			1
+	);
+
 	encounters.push_back( puppy );
 	encounters.push_back( bridge );
 	encounters.push_back( woods );
+	encounters.push_back( randZombie );
+	encounters.push_back( ladder );
+	encounters.push_back( sleep );
 
 }
 
