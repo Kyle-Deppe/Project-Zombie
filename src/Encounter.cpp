@@ -47,7 +47,7 @@ void Encounter::doEncounter( Character * player )
 		}
 		catch( ... )
 		{
-			cout << "Invalid Choice. Try Again: " << endl;
+			cout << "Invalid choice. Try again: " << endl;
 			//Show the options for the encounter
 			cout << choice << endl << ">> ";
 			getline(cin, choiceString);
@@ -98,7 +98,7 @@ void Encounter::doEncounter( Character * player )
 		endEncounter( failValue, player );
 	}
 
-	cout << "\n\nPress ENTER to continue..." << endl;
+	cout << "\n\n\n\nPress <ENTER> to continue..." << endl;
 	cin.ignore();
 
 

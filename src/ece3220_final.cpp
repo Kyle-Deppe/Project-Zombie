@@ -100,8 +100,8 @@ void runGame()
 			playGame( player1, player2, &gameState, encounters );
 
 			//End of turn
-			cout << "Another Turn Completed" << endl <<
-					"Press <ENTER> to Continue or type (Q)UIT to save and exit." << endl;
+			cout << endl << "Another Turn Completed" << endl <<
+					"Press <ENTER> to continue or type (Q)UIT to save and exit." << endl;
 
 			//Get String for Next Turn. IF it's quit, then save and quit, otherwise go to next turn.
 			string nextTurn;
@@ -279,7 +279,7 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	static unsigned int gameTurn = resTurn;
 
 	//Start Turn Message
-	cout << "You've Survived to Turn: " << gameTurn << endl;
+	cout << "You've Survived To Turn: " << gameTurn << endl << endl << endl << endl << endl;
 
 	//Player 1 Turn
 	cout << "<PLAYER 1>" << endl;

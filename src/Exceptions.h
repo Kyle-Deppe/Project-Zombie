@@ -2,7 +2,7 @@ class bad_input: public std::exception
 {
 
 	protected:
-		string msg = "\nInput is Invalid! Try again.";
+		string msg = "\nInput is invalid! Try again.";
 
 	public:
 		explicit bad_input()
