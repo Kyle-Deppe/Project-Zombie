@@ -105,7 +105,9 @@ void runGame()
 
 			//Get String for Next Turn. IF it's quit, then save and quit, otherwise go to next turn.
 			string nextTurn;
+			cout << ">> ";
 			getline(cin, nextTurn);
+			cout << endl;
 
 			if( (nextTurn == "QUIT") || (nextTurn == "Q") || (nextTurn == "quit") || (nextTurn == "q") )
 			{
@@ -130,7 +132,7 @@ void runGame()
 		else if ( gameState == 3 )
 		{
 
-			cout << "Thanks for playing Generic Zombie Game 7.9!" << endl;
+			cout << endl << "Thanks for playing Project Zombie!" << endl;
 			//TODO: Add cake. There will be cake.
 			gameState = -1;
 		}
@@ -181,7 +183,7 @@ void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileN
 void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
 {
 
-	cout << "Loading Game." << endl;
+	cout << endl << "Loading Game." << endl;
 
 	string fileName = "save.dat";
 
@@ -267,7 +269,7 @@ void newGame(Character ** player1, Character ** player2)
 	cout << endl << "                          ` ,            @#%,.@  @@                `";
 	cout << endl << "                                          @@@  @@@ ";
 
-	cout << endl  << endl << endl<< "                                      TYPE <Q> TO QUIT." << endl;;
+	cout << endl  << endl << endl << endl;;
 }
 
 void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters, unsigned int resTurn )
@@ -366,7 +368,7 @@ int main(void)
 
 	runGame();
 
-	cout << endl << endl << "Press <ENTER> to exit.";
+	cout << endl << "Press <ENTER> to exit.";
 	getline(cin, buffer);
 
 	cout << endl << endl << "EXITING PROJECT ZOMBIE" << endl;

@@ -32,7 +32,7 @@ void Encounter::doEncounter( Character * player )
 	cout << story << endl;
 
 	//Show the options for the encounter
-	cout << choice << endl;
+	cout << choice << endl << ">> ";
 
 	//Ask player for choice
 	string choiceString;
@@ -49,7 +49,7 @@ void Encounter::doEncounter( Character * player )
 		{
 			cout << "Invalid Choice. Try Again: " << endl;
 			//Show the options for the encounter
-			cout << choice << endl;
+			cout << choice << endl << ">> ";
 			getline(cin, choiceString);
 		}
 	}
@@ -226,7 +226,7 @@ void EncounterList::setupEncounters()
 
 	Encounter sleep = Encounter(
 			"You're feeling too tired to move on and you need to rest. To your right you see a small crevice to hide in and to your left you see some trees you could climb in to sleep. Do you...",
-			"\n1. Hide in the cave? Staying out of sight would be best! \n2. Climb the tree? nothing can reach you there.",
+			"\n1. Hide in the cave? Staying out of sight would be best! \n2. Climb the tree? Nothing can reach you there.",
 			supplies,
 			0,
 			-15,
@@ -359,7 +359,7 @@ void EncounterList::setupEncounters()
 
 	Encounter cpp = Encounter(
 			"You find a computer that has information to help you get to sanctuary, but you have to write some C++ because. You...",
-			"\n1. Write some classes because you're a boss. \2. Write a rotate ellipse function very poorly",
+			"\n1. Write some classes because you're a boss. \n2. Write a rotate ellipse function very poorly",
 			health,
 			0,
 			-10,
@@ -398,7 +398,7 @@ void EncounterList::setupEncounters()
 
 	Encounter child = Encounter(
 			"As you make your way through the city, a little girl starts making her way towards you. You don't have the heart to kill the child. So you...",
-			"\n1. Run away quickly and hope the girl doesn't move fast. \n 2. Hide in a nearby building until she passes",
+			"\n1. Run away quickly and hope the girl doesn't move fast. \n2. Hide in a nearby building until she passes",
 			supplies,
 			0,
 			-10,

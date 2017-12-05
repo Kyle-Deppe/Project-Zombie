@@ -48,7 +48,7 @@ void Character::showStory( int turnNumber )
 	{
 		if( iter->first == turnNumber )
 		{
-			cout << "Story:" << iter->second << "\n" << endl;
+			cout << "Story: " << iter->second << "\n" << endl;
 			return;
 		}
 	}
@@ -142,19 +142,26 @@ void CharacterList::setupCharacters()
 	 */
 
 	//ARNOLD'S STORIES!
-	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines. Sitting at your desk you listen to the Radio"
-			"as it tells you about how San Diego is safe from the pandemic. That's all you need to hear. You pack your bags,"
-			" keeing in mind that your truck is out of gas and you need to pack lightly."
-	);
-	arnoldCooper->addStory(10, "A story for turn 10");
+	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines.");
+	arnoldCooper->addStory(2, "You look ");
+
+
 
 	//CLARK KENT'S STORIES
-	clarkKent->addStory(0, "You are Clark Kent, a lawyer in New York City. Everyone outside is scrambling to get indoors as the zombies "
-			"spread throughout the city. You're just sipping on some coffee waiting for your private chopper to arrive."
-	);
+	clarkKent->addStory(0, "You are Clark Kent, a journalist from New York City.");
+	clarkKent->addStory(2, "You look up to the sky, and see a bright light. It crashes into the ground next to you. That's weird. You ignore it and keep on going.");
+	clarkKent->addStory(4, "Nighttime arrives. Reaching an urban area, you walk slowly, searching for a place to find food. When suddenly, BAM, some weird guy"
+						   " in a bat suit comes out of no where and slams his fist into your face. How rude. You snap his neck and keep looking for food."
+						   " It has never occurred to you before, but you realize you're kind of ridiculously strong.");
+	clarkKent->addStory(7, "A zombie steps into your path. You blink a little more firmly than usual and he disintegrates at your feet. And everything behind him"
+						   " for about ten feet is a path of destruction. Woops. Now, back to whatever I was doing...");
+
+
 
 	//LUIS RIVERA'S STORIES
 	drRivera->addStory(0, "You are Dr. Rivera, an ingenious professor in Missouri.");
+
+
 
 	//LIL' PUPPER'S STORIES
 	lilPupper->addStory( 0, "You are lil' pupper! You're the cutest 'lil guy in town <3, but underneath that fluffy coat of fur, you have vicious, survival skills.");
@@ -167,6 +174,8 @@ void CharacterList::setupCharacters()
 			"to bring back and make him proud. But as you go into the shop and start sniffing around, you hear the door close and Butcher Doug picks you up "
 			"to cuddle. You're loving it as he scractes your ears and puts your chubby, puppy body on his table."
 	);
+
+
 
 	//ABIGAIL WILLOW'S STORIES
 	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Middle School. You're 13 years old carrying only whats in your backpack and your phone."
@@ -181,6 +190,9 @@ void CharacterList::setupCharacters()
 	abigailWillow->addStory(15, "At the rising dawn you see the Fort with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
 		"As the gates open to you and a military personel walks out to you, you can't help but cry. A few questions and a medical exam later you ask for your father. Without answering the doctor leads you to the barracks and there he is."
 		" Shouting 'Father' you run towards him and are picked up in a strong embrace while crying. 'You're actually alive, you made it here to safety...'");
+	
+
+
 	//DARNWIN ARNOLD'S STORIES
 	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name. No one believed in your learning and now they will all regret it hahaha. This is the time to prove yourself"
 		"This is your time to shine. You aren't at your safe place where your wife is since you were delivering some cargo as a truck driver. But you will be there in the end, surviving.");
@@ -205,6 +217,7 @@ Character* CharacterList::chooseCharacter()
 	cout << endl << "Please select a character:" << endl;
 	displayCharacters();
 
+	cout << ">> ";
 	getline(cin, choiceString);
 	unsigned int charSelect = 0;
 
@@ -216,8 +229,9 @@ Character* CharacterList::chooseCharacter()
 		}
 		catch( ... )
 		{
-			cout << "Invalid choice. Try agin." << endl;
+			cout << endl << "Invalid choice. Try again." << endl;
 			displayCharacters();
+			cout << ">> ";
 			getline(cin, choiceString);
 		}
 	}
