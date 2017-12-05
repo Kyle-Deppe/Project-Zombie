@@ -112,22 +112,22 @@ void CharacterList::setupCharacters()
 	//Here is where we can write all of the charcter information, and we'll only have to do it once
 
 	//Basic constructor calling. The one you setup is totally cool too.
-	Character * arnoldCooper = new Character( "Arnold", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * arnoldCooper = new Character( "Arnold", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( arnoldCooper );
 
-	Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * clarkKent = new Character( "Clark", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( clarkKent );
 
-	Character * drRivera = new Character( "Luis Rivera", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * drRivera = new Character( "Luis Rivera", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( drRivera );
 
-	Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * lilPupper = new Character( "Lil' Pupper", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( lilPupper );
 
-	Character * abigailWillow = new Character( "Abigail", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * abigailWillow = new Character( "Abigail", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( abigailWillow );
 
-	Character * darwinArnold = new Character( "Darwin", 50 + (rand() % 41), 35 + (rand() % 41), 35 + (rand() % 41) );
+	Character * darwinArnold = new Character( "Darwin", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( darwinArnold );
 
 
@@ -172,7 +172,7 @@ void CharacterList::setupCharacters()
 			"\nFor weeks they can't seem to keep their hands off of you, and you love it! You wag your tail and relax day and night. Then one day "
 			"as you're reclining by the fire butcher Doug comes over to play with you. He throws your toy over into his shop and you chase it down "
 			"to bring back and make him proud. But as you go into the shop and start sniffing around, you hear the door close and Butcher Doug picks you up "
-			"to cuddle. You're loving it as he scractes your ears and puts your chubby, puppy body on his table."
+			"to cuddle. You're loving it as he scratches your ears and puts your chubby, puppy body on his table."
 	);
 
 
@@ -181,13 +181,13 @@ void CharacterList::setupCharacters()
 	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Middle School. You're 13 years old carrying only whats in your backpack and your phone."
 		"The Zombies don't wait for you to get home before they attack. You escape the building and its chaos. From a crashed car next to the building you hear from the radio about a Fort Osage"
 		"trying to save citizens of the city. Without a doubt start your adventure to the Fort.");
-	abigailWillow->addStory(4, "As you take a breather you see a boy running towards you shouting. 'Run!!!' he says and soon you see why, a horde of zombies make there way around the corner he ran from."
+	abigailWillow->addStory(2, "As you take a breather you see a boy running towards you shouting. 'Run!!!' he says and soon you see why, a horde of zombies make there way around the corner he ran from."
 		"You follow close behind him until you both take shelter in a house that was left open. 'I'm Alex' he says once we caught our breath. Afterward you both head you seperate ways. You only ddepend on yourself");
-	abigailWillow->addStory(10, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
+	abigailWillow->addStory(4, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
 		"People are desperate");
-	abigailWillow->addStory(13,"You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
+	abigailWillow->addStory(7,"You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
 		"You refuse to travel at night time, wild animals are becoming braver as they realize humans aren't the top predators anymore, and humans have fallen back to the old justice ways.");
-	abigailWillow->addStory(15, "At the rising dawn you see the Fort with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
+	abigailWillow->addStory(10, "At the rising dawn you see the Fort with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
 		"As the gates open to you and a military personel walks out to you, you can't help but cry. A few questions and a medical exam later you ask for your father. Without answering the doctor leads you to the barracks and there he is."
 		" Shouting 'Father' you run towards him and are picked up in a strong embrace while crying. 'You're actually alive, you made it here to safety...'");
 	
@@ -196,17 +196,17 @@ void CharacterList::setupCharacters()
 	//DARNWIN ARNOLD'S STORIES
 	darwinArnold->addStory(0, "You are Darwin Arnold, you are a  survivalist contradictory to your name. No one believed in your learning and now they will all regret it hahaha. This is the time to prove yourself"
 		"This is your time to shine. You aren't at your safe place where your wife is since you were delivering some cargo as a truck driver. But you will be there in the end, surviving.");
-	darwinArnold->addStory(4,"'Oh my gosh this world sucks' you think to yourself. You thought you were prepared but now that it's happening, you are questioning everything you know. You start writing the field guid to zombies "
+	darwinArnold->addStory(2,"'Oh my gosh this world sucks' you think to yourself. You thought you were prepared but now that it's happening, you are questioning everything you know. You start writing the field guid to zombies "
 		"to make time go by faster whenever you're stopping for the night when the light is allowed");
 
-	darwinArnold->addStory(10, "You witness a large community of humans get torn to shreds by zombies and your sanity starts to decrease. You thought you could escape this reality at night in your sleep but you only recieve nightmares. "
+	darwinArnold->addStory(4, "You witness a large community of humans get torn to shreds by zombies and your sanity starts to decrease. You thought you could escape this reality at night in your sleep but you only recieve nightmares. "
 	"You continue your journey home to your wife...");
 	if (darwinArnold->getHealth() <= 30)
-		darwinArnold->addStory(13, "You can no longer sleep and you are constantly hearing voices whether they are screams of pain, groans of zombies, or your inner demon. You are contemplating giving up now...");
+		darwinArnold->addStory(7, "You can no longer sleep and you are constantly hearing voices whether they are screams of pain, groans of zombies, or your inner demon. You are contemplating giving up now...");
 	else
-		darwinArnold->addStory(13, "You do basic work outs to get you tired so you can gain rest and remind yourself of your wife. This works and you gain some of your sanity back. The journey has been long but you are holding on");
+		darwinArnold->addStory(7, "You do basic work outs to get you tired so you can gain rest and remind yourself of your wife. This works and you gain some of your sanity back. The journey has been long but you are holding on");
 	
-	darwinArnold->addStory(15, "You see your secluded home a few hundred meters away. Sprinting the remainder of the way you feel your hope rise seeing majority of the animals still looking healthy. You run to the fence and shake the bell"
+	darwinArnold->addStory(10, "You see your secluded home a few hundred meters away. Sprinting the remainder of the way you feel your hope rise seeing majority of the animals still looking healthy. You run to the fence and shake the bell"
 		" longing to see your wife. You see her face appear from inside the lookout tower and you can help but yell her name 'Susan! I'm Here!'");
 
 }

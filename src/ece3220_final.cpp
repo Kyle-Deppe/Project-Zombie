@@ -295,12 +295,12 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	//IF PLAYERS ARE DEAD
 	if( ( player1->getHealth() == 0 ) || ( player1->getSupplies() == 0 ) )
 	{
-		cout << "Player 1 has died!" << endl;
+		cout << "Player 1 has died. Player 2 wins!" << endl;
 		*gameState = 3;
 	}
 	if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
 	{
-		cout << "Player 2 has died!" << endl;
+		cout << "Player 2 has died. Player 1 wins!" << endl;
 		*gameState = 3;
 	}
 
