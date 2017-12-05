@@ -155,6 +155,10 @@ void CharacterList::setupCharacters()
 						   " It has never occurred to you before, but you realize you're kind of ridiculously strong.");
 	clarkKent->addStory(7, "A zombie steps into your path. You blink a little more firmly than usual and he disintegrates at your feet. And everything behind him"
 						   " for about ten feet is a path of destruction. Woops. Now, back to whatever I was doing...");
+	clarkKent->addStory(10, "You look up ahead and see your destination: San Diego. Taking a step forward, you remember something. You're freaking Superman!"
+							" This realization elates you with energy. Taking a deep breath, you prepare for what you must do. Grabbing the ground firmly with"
+							" two hands, you pull and stretch it apart. Muscles aching, you pull harder and harder with the force of a billion men until, finally, the Earth"
+							" breaks in half. That oughta do it. Content, you fly out into space to go live with some other alien race that's better than humanity.");
 
 
 
