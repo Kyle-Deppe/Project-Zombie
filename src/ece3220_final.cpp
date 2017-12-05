@@ -279,7 +279,7 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	static unsigned int gameTurn = resTurn;
 
 	//Start Turn Message
-	cout << "You've Survived To Turn: " << gameTurn << endl << endl << endl << endl << endl;
+	cout << "You've survived to turn: " << gameTurn + 1 << endl << endl << endl << endl << endl;
 
 	//Player 1 Turn
 	cout << "<PLAYER 1>" << endl;
