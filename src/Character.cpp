@@ -167,8 +167,14 @@ void CharacterList::setupCharacters()
 
 
 	//LUIS RIVERA'S STORIES
-	drRivera->addStory(0, "You are Dr. Rivera, an ingenious professor in Missouri.");
-
+	drRivera->addStory(0, "You are Dr. Rivera, an ingenious professor in Missouri. After finishing up some important research on the Zombie Apocolypse you start your journey towards Sanctuary, with the information ni hand to develop a cure.");
+	drRivera->addStory(3, "Unphased by the troubles of the journey, you pull out your laptop and begin developing lectures for the classes you're hoping to teach, once you reach Sanctuary. " );
+	drRivera->addStory(5, "Lying down for another night of rest you hear a noise creeping towards you. Turning switftly and arming yourself, you look up to see a figure moving towards you. As the moonlight reaches its "
+						  "face you finally recognize the face of none other than Tushar! He comes forward and greets you with a hug and the two of you sit down for a night of debating whether or not Eclipse is a good IDE."	);
+	drRivera->addStory(8, "Nearing your journey's end you start to feel very excited! You're going to save the world. The cure to this disease is in the palm of your hand!" );
+	drRivera->addStory(10, "In the distance you can see the faint outline of a wall! There it is! You move forward as fast as you can until you reach the wall. You're welcomed inside and you begin your new life developing computers in this world without electricity. "
+							"The new R-Box 9001 features state of the art features like binary. Running of treadmill power, your new machines push the colony into the best tech of the 20th century! "
+							"You feel like a hero as you finally finish the vaccination and begin distributing it to all of Sanctuary...\n\nTwo months later everyone has been vaccinated. Unfortunately, the proper sanitization wasn't used and most of the colony died from infection. Leaving only a humans left to be the end of humanity.");
 
 
 	//LIL' PUPPER'S STORIES
@@ -191,7 +197,7 @@ void CharacterList::setupCharacters()
 		"trying to save citizens of the city. Without a doubt start your adventure to the Fort.");
 	abigailWillow->addStory(2, "As you take a breather you see a boy running towards you shouting. 'Run!!!' he says and soon you see why, a horde of zombies make there way around the corner he ran from."
 		"You follow close behind him until you both take shelter in a house that was left open. 'I'm Alex' he says once we caught our breath. Afterward you both head you seperate ways. You only ddepend on yourself");
-	abigailWillow->addStory(4, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
+	abigailWillow->addStory(5, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
 		"People are desperate");
 	abigailWillow->addStory(7,"You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
 		"You refuse to travel at night time, wild animals are becoming braver as they realize humans aren't the top predators anymore, and humans have fallen back to the old justice ways.");

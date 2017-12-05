@@ -359,7 +359,7 @@ void EncounterList::setupEncounters()
 
 	Encounter cpp = Encounter(
 			"You find a computer that has information to help you get to sanctuary, but you have to write some C++ because. You...",
-			"\n1. Write some classes because you're a boss. \n2. Write a rotate ellipse function very poorly",
+			"\n1. Write some classes because you're a boss? \n2. Write a rotate ellipse function very poorly?",
 			health,
 			0,
 			-30,
