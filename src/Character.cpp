@@ -143,7 +143,11 @@ void CharacterList::setupCharacters()
 
 	//ARNOLD'S STORIES!
 	arnoldCooper->addStory(0, "You are Arnold Cooper, a member of the United States Marines.");
-	arnoldCooper->addStory(2, "You look ");
+	arnoldCooper->addStory(2, "Your emergency phone rings and it attracts another zombie. You run away until you feel safe. Looking at the caller ID, you get ticked off because it's an automated call from the IRS asking for taxes.");
+	arnoldCooper->addStory(4, "You've reached a door and it's locked. Unfolding your handy dandy swiss army knife, you kneel down to unlock it. Crap, you don't remember how to do this. So you kick the door the heck down and walk on in.");
+	arnoldCooper->addStory(7, "Reaching a rural area, there's a rustle in the woods. Ignoring it, you keep going. But the rustling doesn't stop. Panicking, you break into a sprint. "
+							" Whatever is after you, it's right on your heels. You keep running until you trip and fall on your face. The creature trips over you and breaks its own neck on the fall. Well that was close.");
+	arnoldCooper->addStory(10, "You've reached salvation. Walking right up to the base, you get greeted at the front gate and walk on in. Welcome to San Diego.");
 
 
 
