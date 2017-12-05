@@ -111,7 +111,7 @@ void CharacterList::setupCharacters()
 {
 	//Here is where we can write all of the charcter information, and we'll only have to do it once
 
-	//Basic constructor calling. The one you setup is totally cool too.
+	// Make sure to write a delete() for all of these.
 	Character * arnoldCooper = new Character( "Arnold", 50 + (rand() % 41), 50 + (rand() % 41), 35 + (rand() % 41) );
 	list.push_back( arnoldCooper );
 

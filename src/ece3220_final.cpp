@@ -27,7 +27,7 @@ string Choice(string &choiceString) throw ( bad_input );
 
 void setupCharacters(Character ** player1, Character ** player2)
 {
-	CharacterList * charList = new CharacterList();
+	CharacterList * charList = new CharacterList();					// This needs a delete() still
 
 	cout << endl << "<PLAYER 1>";
 	Character * NewPlayer1 =  charList->chooseCharacter();
@@ -48,7 +48,7 @@ void runGame()
 	unsigned int resTurn = 0;
 
 	Character * player1 = NULL, *player2 = NULL;
-	EncounterList * encounters = new EncounterList();
+	EncounterList * encounters = new EncounterList();			// This needs a delete() still
 
 	while ( gameState != -1 )
 	{
