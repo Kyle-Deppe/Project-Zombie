@@ -192,18 +192,18 @@ void CharacterList::setupCharacters()
 
 
 	//ABIGAIL WILLOW'S STORIES
+	//ABIGAIL WILLOW'S STORIES
 	abigailWillow->addStory(0, "You are Abigail Willow, a student at Westhall Middle School. You're 13 years old carrying only whats in your backpack and your phone."
-		"The Zombies don't wait for you to get home before they attack. You escape the building and its chaos. From a crashed car next to the building you hear from the radio about a Fort Osage"
-		"trying to save citizens of the city. Without a doubt start your adventure to the Fort.");
+		"The Zombies don't wait for you to get home before they attack. You escape the building and its chaos. From a crashed car next to the building you hear from the radio about San Dieg0 "
+		"trying to save the human race. Without a doubt start your adventure to San Diego.");
 	abigailWillow->addStory(2, "As you take a breather you see a boy running towards you shouting. 'Run!!!' he says and soon you see why, a horde of zombies make there way around the corner he ran from."
 		"You follow close behind him until you both take shelter in a house that was left open. 'I'm Alex' he says once we caught our breath. Afterward you both head you seperate ways. You only ddepend on yourself");
-	abigailWillow->addStory(5, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
+	abigailWillow->addStory(4, "You are halfway there, it's only been a few weeks but you can feel how little there is left of humanity. You are seeing less stragglers and the ones who you do see you avoid."
 		"People are desperate");
-	abigailWillow->addStory(7,"You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
+	abigailWillow->addStory(7, "You soon realize how bleak and dangerous the world has become. You never really stopped to think on your parents or friends (or fake friends) who could all be dead now. "
 		"You refuse to travel at night time, wild animals are becoming braver as they realize humans aren't the top predators anymore, and humans have fallen back to the old justice ways.");
-	abigailWillow->addStory(10, "At the rising dawn you see the Fort with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
-		"As the gates open to you and a military personel walks out to you, you can't help but cry. A few questions and a medical exam later you ask for your father. Without answering the doctor leads you to the barracks and there he is."
-		" Shouting 'Father' you run towards him and are picked up in a strong embrace while crying. 'You're actually alive, you made it here to safety...'");
+	abigailWillow->addStory(10, "At the rising dawn you see the San Diego with people guarding the perimeter. With a sigh of relief you come out of hiding and walk slowly towards the gates trying to hold back tears."
+		"As the gates open to you and a military personel walks out to you saying 'Welcome' and you can't help but cry. 'I'm actually alive, I made it here to safety...'");
 	
 
 
