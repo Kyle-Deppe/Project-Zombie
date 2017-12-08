@@ -11,6 +11,7 @@ Encounter::~Encounter() {
 	// TODO Auto-generated destructor stub
 }
 
+//Basic encounter constructor. Almost everything is required because encounters have many unique parameters
 Encounter::Encounter( string _story, string _choice, ResultType _type, int _passValue, int _failValue, string _passStory, string _failStory, int _odds, unsigned int _rightChoice = 0 )
 {
 	story = _story;
@@ -24,7 +25,11 @@ Encounter::Encounter( string _story, string _choice, ResultType _type, int _pass
 	failStory = _failStory;
 }
 
-
+/*
+ * doEncounter
+ * 	This method is where the player gets the story for an encounter and makes their decision on what to do. Then they will get an outcome depending
+ * 	on their choice and a luck factor
+ */
 void Encounter::doEncounter( Character * player )
 {
 
@@ -39,6 +44,7 @@ void Encounter::doEncounter( Character * player )
 	getline(cin, choiceString);
 	unsigned int choiceNum = 0;
 
+	//Simply validate whether that number was valid
 	while( choiceNum == 0 )
 	{
 		try
@@ -104,25 +110,34 @@ void Encounter::doEncounter( Character * player )
 	cout << endl;
 }
 
+/*
+ * validChoice
+ * 		A method for error checking the player's choice during an encounter
+ */
 int Encounter::validChoice( string choiceStr ) throw ( int )
 {
+	//If they didn't input anything
 	if( choiceStr.empty() )
 	{
 		throw 1;
 	}
 
+	//If they didn't input an integer
 	if( !isdigit(choiceStr[0]) )
 	{
 		throw 2;
 	}
 
+	//Get integer value from string
 	unsigned int choice = stoi( choiceStr );
 
+	//If they put in a number less than 1
 	if( choice < 1 )
 	{
 		throw 3;
 	}
 
+	//If they input a number greater than 2
 	if( choice > 2 )
 	{
 		throw 4;
@@ -131,6 +146,10 @@ int Encounter::validChoice( string choiceStr ) throw ( int )
 	return choice;
 }
 
+/*
+ * endEncounter
+ * 		This function handles the modifcation of stats and telling the player what they have remaining.
+ */
 void Encounter::endEncounter( int value, Character * player )
 {
 	switch( type )
@@ -444,14 +463,26 @@ void EncounterList::setupEncounters()
 
 }
 
+/*
+ * doEncounter
+ * 		This is the method that gets called from the playGame method to give each player an encounter. It will take in a player object, whose stats may
+ * 		be modified and check. Then it selects an encounter from the list of encounters generatred on initialization.
+ */
 void EncounterList::doEncounter( Character * player )
 {
 
 	try
 	{
+		//Pick a random number from 0 to the size of the encounter list
 		int encNum = randomEnc( encounters.size() );
+
+		//Create a pointer to that encounter
 		Encounter encounter = encounters[encNum];
+
+		//Call the doEncounter method on that encounter
 		encounter.doEncounter( player );
+
+		//Erase that encounter from the list of encounters
 		encounters.erase( encounters.begin() + encNum );
 	}
 	catch( int & e )
@@ -462,6 +493,11 @@ void EncounterList::doEncounter( Character * player )
 
 }
 
+/*
+ * randomEnc
+ * 		This si a simple method for selecting an encounter from the list.It's passed an unsigned int that should be > 0. Then it randomly generates
+ * 		and integer between 0 and the value passed. Then returns that value.
+ */
 int EncounterList::randomEnc( unsigned int n )
 {
 
@@ -469,7 +505,11 @@ int EncounterList::randomEnc( unsigned int n )
 	{
 		throw -1;
 	}
+
+	//Generate random int between 0-n
 	unsigned int f = ( rand() % n );
+
+	//Return int
 	return f;
 
 }

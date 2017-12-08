@@ -26,6 +26,14 @@ void deleGame( int save );
 string Choice(string &choiceString) throw ( bad_input );
 
 
+/*
+ * setupCharacters
+ * 		ARGS: Character **, Character **
+ * 		RTRN: void
+ * 		DESC: This function is designed simply to take in the two double-pointers to Character objects. It will creae an instance of the character
+ * 		list, which will generate a all 6 Character objects. Then the chooseCharacter method will be called, returning the point to each character
+ * 		selected
+ */
 void setupCharacters(Character ** player1, Character ** player2)
 {
 	CharacterList * charList = new CharacterList();					// This needs a delete() still
@@ -41,6 +49,15 @@ void setupCharacters(Character ** player1, Character ** player2)
 
 }
 
+/*
+ * runGame
+ * 		ARGS: none
+ * 		RTRN: void
+ * 		DESC: This is the function that is essentially designed to run the main menu and call the other functions/methods. It's the controller.
+ * 		It has the following structure. The outer section is checking the gamestate, there are 4, a gamestate for the menu, a gamestate for playing the game,
+ * 		a gamestate for the game ending, and a gamestate for winning/losing the game.
+ * 		Within the gamestate there are other menus that will operate and other methods that will be called
+ */
 void runGame()
 {
 	string choiceString = "0";
@@ -49,14 +66,19 @@ void runGame()
 	int saveSel = 0;
 	unsigned int resTurn = 0;
 
+	//Create pointers for the two character objects
 	Character * player1 = NULL, *player2 = NULL;
-	EncounterList * encounters = new EncounterList();			// This needs a delete() still
 
+	//At the start of every game a fresh list of encounters will be generated
+	EncounterList * encounters = new EncounterList();
+
+	//If the gamestate is not in ending mode, run the application
 	while ( gameState != -1 )
 	{
 		//Main menu state
 		if( gameState == 0 )
 		{
+			//Validate that a proper choice has been made
 			try
 			{
 				choiceString = Choice(choiceString);
@@ -68,6 +90,13 @@ void runGame()
 			}
 			menuChoice = stoi(choiceString);
 
+			/*
+			 * The menu options:
+			 * 1. Start a new game
+			 * 2. Load a game (this also runs the first turn with playGame
+			 * 3. Display instructions/backstory
+			 * 4. Exit the game
+			 */
 			switch( menuChoice )
 			{
 				case 1:
@@ -77,8 +106,13 @@ void runGame()
 				case 2:
 					try
 					{
+						//Load the save file, this method will put data in each pointer's value
 						loadGame( &resTurn, &saveSel, &player1, &player2 );
+
+						//Run the first turn of the game from here, as the game will not begin until there is another loop.
 						playGame( player1, player2, &gameState, encounters, saveSel, resTurn );
+
+						//Set the gamestate to the playing game state
 						gameState = 1;
 					}
 					catch( ... )
@@ -87,9 +121,11 @@ void runGame()
 					}
 					break;
 				case 3:
+					//Call the method to show instructions
 					displayInstructions();
 					break;
 				case 4:
+					//End the game
 					gameState = 3;
 					break;
 			}
@@ -111,6 +147,7 @@ void runGame()
 			getline(cin, nextTurn);
 			cout << endl;
 
+			//If they choose to quit, set the gamemode ot shutdown
 			if( (nextTurn == "QUIT") || (nextTurn == "Q") || (nextTurn == "quit") || (nextTurn == "q") )
 			{
 				gameState = 2;
@@ -140,8 +177,17 @@ void runGame()
 	//When all is lost...
 	delete( player1 );
 	delete( player2 );
+	delete( encounters );
+
 }
 
+/*
+ * saveGame
+ * 		ARGS: int, int, Character *, Character *
+ * 		RTRN: void
+ * 		DESC: This function takes in most of the runtime data specific to each game (except for encounters) and writes them to a file
+ * 		that is associated with the slot selected when playing the game.
+ */
 void saveGame( int turn, int save, Character * player1, Character *player2 ) throw ( fileNotOpened )
 {
 	//Build the file name
@@ -181,6 +227,12 @@ void saveGame( int turn, int save, Character * player1, Character *player2 ) thr
 
 }
 
+/*
+ * deleGame
+ * 		ARGS: int
+ * 		RTRN: void
+ * 		DESC: This function simply deletes the file with the given number associated. This is called when the players finish the game
+ */
 void deleGame( int save )
 {
 
@@ -189,6 +241,12 @@ void deleGame( int save )
 
 }
 
+/*
+ * saveExist
+ * 		ARGS: string
+ * 		RTRN: bool
+ * 		DESC: This is a simply yes/no, utility function to check whether a file with the given name exists. It's used when checking save slots
+ */
 bool saveExist( string name )
 {
 	if ( ifstream( name ) )
@@ -198,14 +256,23 @@ bool saveExist( string name )
 	return false;
 }
 
+/*
+ * loadGame
+ * 		ARGS: unsigned int *, int *, Character **, Charcater **
+ * 		RTRN: void
+ * 		DESC: Very similar to the save function, this function takes in pointers to most of the game data, and instead of saving them to a file
+ * 		with the associated slot number, it loads the data from that, if it exists.
+ */
 void loadGame( unsigned int * turn, int * save, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
 {
 
+	//This is nice to know :)
 	cout << endl << "Loading Game..." << endl;
 
 	//Choose a save slot
 	cout << "Which game would you like to load?\n" << endl;
 
+	//For each save slot, check if there is a save that exists, and let the user know
 	for( int i = 1; i <= 3; i++ )
 	{
 		string file = "slot" + to_string(i) + ".zom";
@@ -219,23 +286,28 @@ void loadGame( unsigned int * turn, int * save, Character ** player1, Character 
 		}
 	}
 
+	//This next block of code is just recieving input from the user and putting that value in the saveSlot variable.
 	string choiceString = "0";
 	cout << ">> ";
 	getline(cin, choiceString);
 
+	//There are only three slots allowed. Make sure they picked one of those
 	while( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
 	{
 		cout << "Not a valid save slot. Try again: " << endl;
 		getline(cin, choiceString);
 	}
 
+	//Change the saveslot for the current game
 	*save = stoi( choiceString );
 	string fileName = "slot" + to_string( *save ) + ".zom";
+
 
 	//Create new file input stream
 	ifstream read;
 	read.exceptions ( ifstream::failbit | ifstream::badbit );
 
+	//Try opening the file for reading
 	try
 	{
 		read.open( fileName );
@@ -275,21 +347,39 @@ void loadGame( unsigned int * turn, int * save, Character ** player1, Character 
 
 }
 
+/*
+ * newGame
+ * 		ARGS: Character **, Character **, int *
+ * 		RTRN: void
+ * 		DESC: As the name would suggest, this function is called whenever the player starts a new game. At first it asks the player which save
+ * 		slot they will be using. Then it continues to call the setupCharcters function so that each player can select their desired characters.
+ * 		Lastly, and most importantly, it prints out one heck of a zombie!!!!
+ */
 void newGame(Character ** player1, Character ** player2, int * save )
 {
 	string buffer = "";
 	cout << endl << "Creating a new game..." << endl;
 
 	//Choose a save slot
-	cout << "Which file would you like to save to?\n"
-			"1. Slot 1\n"
-			"2. Slot 2\n"
-			"3. Slot 3\n" << endl;
+	cout << "Which file would you like to save to?\n";
+
+	//For each save slot, check if there is a save that exists, and let the user know
+	for( int i = 1; i <= 3; i++ )
+	{
+		string file = "slot" + to_string(i) + ".zom";
+		if( saveExist( file ) )
+		{
+			cout <<  to_string(i) + ". Slot " + to_string(i) + " - SAVE EXISTS\n";
+		}
+		else
+		{
+			cout << to_string(i) +  ". Slot " + to_string(i) + " - EMPTY\n";
+		}
+	}
 
 	string choiceString = "0";
 	cout << ">> ";
 	getline(cin, choiceString);
-
 	while( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
 	{
 		cout << "Not a valid save slot. Try again: " << endl;
@@ -338,6 +428,17 @@ void newGame(Character ** player1, Character ** player2, int * save )
 	cout << endl  << endl << endl << endl;;
 }
 
+/*
+ * playGame
+ * 		ARGS: Charcter *, Character *, int *, EncounterList *, int, unsigned int
+ * 		RTRN: void
+ * 		DESC: Once again, as the naem might suggest, this function is where the main game happens. All of the action of encounters and turns
+ * 		and making decisions is called from right here. At the start of each turn it will attempt to display the story for each player on this turn
+ * 		and then try to give each player their encounter for this turn, from the list of encounters.
+ * 		If, after the encounters, either players are dead (or both), the endgame gamestate will be triggered and the game will end
+ * 		If the players reach turn 10, the game will output their last stories, and then end.
+ * 		At the end of each turn, the game will save.
+ */
 void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters, int save, unsigned int resTurn )
 {
 
@@ -397,6 +498,12 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 
 }
 
+/*
+ * displayInstructions
+ * 		ARGS: none
+ * 		RTRN: void
+ * 		DESC: This is a simple function to display some instructions for the game and some backstory.
+ */
 void displayInstructions()
 {
 	cout << endl << "Instructions:"
@@ -410,6 +517,13 @@ void displayInstructions()
 		<< endl;
 }
 
+/*
+ * Choice
+ * 		ARGS: string
+ * 		RTRN string
+ * 		DESC: This is the function that runs the main menu of the game. It outputs the options and then does error checking until the user
+ * 		selects a proper option.
+ */
 string Choice(string &choiceString) throw (bad_input)
 {
 	cout << endl << "Please select an option: "
@@ -430,6 +544,10 @@ string Choice(string &choiceString) throw (bad_input)
 
 }
 
+/*
+ * main
+ * 		DESC: The all important main function!! This function calls runGame() and then asks the user to hit enter once the game ends...
+ */
 int main(void)
 {
 	string buffer = "";
@@ -437,8 +555,10 @@ int main(void)
 	srand(time(NULL));
 	cout << "PROJECT ZOMBIE" << endl << endl << "Welcome to Project Zombie";
 
+	//LAUNCH PROJECT ZOMBIE!!!!!
 	runGame();
 
+	//Pressing enter says goodbye forever!!!
 	cout << endl << "Press <ENTER> to exit.";
 	getline(cin, buffer);
 

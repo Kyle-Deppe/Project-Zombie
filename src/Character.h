@@ -39,6 +39,7 @@ public:
 
 	void addStory(int turn, string story);
 
+	//These are operator overloads for when this object is written to a file. This will make it so that the data for the character will be written
 	friend std::ostream& operator<<(std::ostream & os, const Character & player )
 	{
 		os << player.name << '\n';
@@ -48,6 +49,7 @@ public:
 		return os;
 	}
 
+	//These are operator overloads for when this object is loaded from a file. This willl load each line of the file into this object.
 	friend std::istream& operator>>(std::istream & is, Character & player)
 	{
 		string readName;

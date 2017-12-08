@@ -1,7 +1,12 @@
 #include "Character.h"
 
 
-Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 ) {
+/*
+ * Character constructor!
+ * To make a character you have to put in a name, and the other values are optional
+ */
+Character::Character( string _name, int _health = 100, int _supplies = 10, int _luck = 50 )
+{
 	name = _name;
 	health = _health;
 	supplies = _supplies;
@@ -12,6 +17,10 @@ Character::~Character()
 {
 }
 
+/*
+ * printPlayerData
+ * 		This is just a nifty method used at the start of the game to display the random stats
+ */
 void Character::printPlayerData()
 {
 	cout << endl << name << "'s Stats" << endl
@@ -20,47 +29,64 @@ void Character::printPlayerData()
 			<< "Luck: " << luck << endl;
 }
 
+//Return the luck
 int Character::getLuck()
 {
 	return luck;
 }
 
+//Return the health
 int Character::getHealth()
 {
 	return health;
 }
 
+//Return the supplies
 int Character::getSupplies()
 {
 	return supplies;
 }
 
+//Return the name
 string Character::getName()
 {
 	return name;
 }
 
+/*
+ * showStory
+ * 		This is a simple method that takes in the turn number and checks to see if there is an existing record in the mainStory map. If there is, it gets printed
+ */
 void Character::showStory( int turnNumber )
 {
 	std::map<int, string>::const_iterator iter;
 
+	//Check through the entire map
 	for ( iter = mainStory.begin(); iter != mainStory.end(); iter++ )
 	{
+		//If there is a record with a key equal to the turn number
 		if( iter->first == turnNumber )
 		{
-			cout << "Story: " << iter->second << "\n" << endl;
+			//Show that story!
+			cout << iter->second << "\n" << endl;
 			return;
 		}
 	}
 
 }
 
+/*
+ * addHealth
+ * 		A setter used for adding and subtracting health from the player. This will not let the health exceed 100 or go below 0
+ */
 void Character::addHealth(int number)
 {
+	//If health would be below 0 with addition
 	if ((health + number) < 0)
 	{
 		health = 0;
 	}
+	//If health would be above 100 with addition
 	else if ((health + number) > 100)
 	{
 		health = 100;
@@ -70,29 +96,55 @@ void Character::addHealth(int number)
 		health = health + number;
 	}
 }
-void Character::addSupplies(int number) {
-	if ((supplies + number) < 0) {
+
+/*
+ * addSupplies
+ * 		A setter used for adding and subtracting supplies from the player. This will no let the supplies exceed 100 or go below 0
+ */
+void Character::addSupplies(int number)
+{
+	//If supplies would be below 0 with addition
+	if ((supplies + number) < 0)
+	{
 		supplies = 0;
 	}
-	else if ((supplies + number) > 100) {
+	//If supplies would be greater than 100
+	else if ((supplies + number) > 100)
+	{
 		supplies = 100;
 	}
-	else {
+	else
+	{
 		supplies = supplies + number;
 	}
 }
-void Character::addLuck(int number) {
-	if ((luck + number) < 0) {
+
+/*
+ * addLuck
+ * 		A setter used for adding and subtracking luck from the player. This will not let the luck exceed 100 or go below 0
+ */
+void Character::addLuck(int number)
+{
+	//If the luck would be less than 0
+	if ((luck + number) < 0)
+	{
 		luck = 0;
 	}
-	else if ((luck + number) > 100) {
+	//If the luck would be greater than 100
+	else if ((luck + number) > 100)
+	{
 		luck = 100;
 	}
-	else {
+	else
+	{
 		luck = luck + number;
 	}
 }
 
+/*
+ * addStory
+ * 		A simple method used for adding a story element associated with a key (turn) to the map
+ */
 void Character::addStory( int turn, string story )
 {
 	//Add story to map
@@ -225,20 +277,30 @@ void CharacterList::setupCharacters()
 
 }
 
+/*
+ * chooseCharacter
+ * 		This is the method that gets called during the game setup for each character to select a character from the list. Once a character is
+ * 		selected, they have to be removed from the list
+ */
 Character* CharacterList::chooseCharacter()
 {
+	//Display instruction
 	string choiceString = "0";
 	cout << endl << "Please select a character:" << endl;
+
+	//Output a list of all remaining Characters
 	displayCharacters();
 
 	cout << ">> ";
 	getline(cin, choiceString);
 	unsigned int charSelect = 0;
 
+	//This simple validates whether they have chosen a charcacter in the list
 	while( charSelect == 0 )
 	{
 		try
 		{
+			//If a valid character has been selected
 			charSelect = charChoice( choiceString );
 		}
 		catch( ... )
@@ -250,34 +312,47 @@ Character* CharacterList::chooseCharacter()
 		}
 	}
 
+	//Subtract one from the value, because the map goes from 0-5 and the user has optiosn 1-6
 	--charSelect;
 
+	//Save a pointer to the selected character to be returned
 	Character * rtn = list[charSelect];
+
+	//Remove the pointer from the list of characters that can be selected
 	list.erase( list.begin() + ( charSelect ) );
 
 	return rtn;
 
 }
 
+/*
+ * charChoice
+ * 		Simply input validation for when the player is selecting a character.
+ */
 int CharacterList::charChoice( string choice ) throw( int )
 {
+	//If nothing was input
 	if( choice.empty() )
 	{
 		throw 1;
 	}
 
+	//If they did not input an integer
 	if( !isdigit(choice[0]) )
 	{
 		throw 2;
 	}
 
+	//Convert string to integer
 	unsigned int charNum = stoi( choice );
 
+	//If the value is less than 1
 	if( charNum < 1 )
 	{
 		throw 3;
 	}
 
+	//If they input a number greater than the length of the list (must be invalid)
 	if( charNum > list.size() )
 	{
 		throw 4;
@@ -286,6 +361,10 @@ int CharacterList::charChoice( string choice ) throw( int )
 	return charNum;
 }
 
+/*
+ * displayCharacters
+ * 		This is a simple method for displaying the name of every character in the list, with a number associated. This is sued for selecting characaters
+ */
 void CharacterList::displayCharacters()
 {
 	for( unsigned int i = 0; i < list.size(); i++ )
