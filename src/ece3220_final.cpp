@@ -16,11 +16,12 @@ using namespace std;
 
 void setupCharacters(Character **, Character **);
 void runGame();
-void newGame(Character **, Character **);
-void playGame(Character *, Character *, int * , EncounterList *, unsigned int = 0 );
+void newGame(Character **, Character **, int * );
+void playGame(Character *, Character *, int * , EncounterList *, int, unsigned int = 0);
 void displayInstructions();
-void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened );
-void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened );
+void saveGame( int turn, int save, Character * player1, Character *player2 ) throw ( fileNotOpened );
+void loadGame( unsigned int * turn, int * save, Character ** player1, Character ** player2 ) throw ( fileNotOpened );
+void deleGame( int save );
 
 string Choice(string &choiceString) throw ( bad_input );
 
@@ -45,6 +46,7 @@ void runGame()
 	string choiceString = "0";
 	int gameState = 0;
 	int menuChoice = 0;
+	int saveSel = 0;
 	unsigned int resTurn = 0;
 
 	Character * player1 = NULL, *player2 = NULL;
@@ -70,13 +72,13 @@ void runGame()
 			{
 				case 1:
 					gameState = 1;
-					newGame( &player1, &player2 );
+					newGame( &player1, &player2, &saveSel );
 					break;
 				case 2:
 					try
 					{
-						loadGame( &resTurn, &player1, &player2 );
-						playGame( player1, player2, &gameState, encounters, resTurn );
+						loadGame( &resTurn, &saveSel, &player1, &player2 );
+						playGame( player1, player2, &gameState, encounters, saveSel, resTurn );
 						gameState = 1;
 					}
 					catch( ... )
@@ -97,7 +99,7 @@ void runGame()
 		else if ( gameState == 1 )
 		{
 			//This is where all the gameplay actually takes place
-			playGame( player1, player2, &gameState, encounters );
+			playGame( player1, player2, &gameState, encounters, saveSel );
 
 			//End of turn
 			cout << endl << "Another Turn Completed" << endl <<
@@ -118,23 +120,20 @@ void runGame()
 		//Player Died Gamestate
 		else if ( gameState == 2 )
 		{
-			if( ( player1->getHealth() == 0 ) || ( player1->getSupplies() == 0 ) )
-			{
-				cout << "Player 2 won!" << endl;
-			}
-			else if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
-			{
-				cout << "Player 1 won!" << endl;
-			}
 			gameState = -1;
 		}
 		//WIN GAME state
 		else if ( gameState == 3 )
 		{
 
+			//Delete the save
+			deleGame( saveSel );
+
+			//Say Goodbye!
 			cout << endl << "Thanks for playing Project Zombie!" << endl;
 			//TODO: Add cake. There will be cake.
 			gameState = -1;
+
 		}
 	}
 
@@ -143,9 +142,11 @@ void runGame()
 	delete( player2 );
 }
 
-void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileNotOpened )
+void saveGame( int turn, int save, Character * player1, Character *player2 ) throw ( fileNotOpened )
 {
-	string fileName = "save.dat";
+	//Build the file name
+	string fileName = "slot" + to_string(save) + ".zom";
+	//cout << "Saving " << fileName << endl;
 
 	//Create new file input stream
 	ofstream write;
@@ -155,7 +156,7 @@ void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileN
 	{
 		write.open( fileName );
 
-		//Write the turn number to the filw
+		//Write the turn number to the file
 		write << turn << endl;
 
 		//Create references os that we can use an operator
@@ -180,12 +181,56 @@ void saveGame( int turn, Character * player1, Character *player2 ) throw ( fileN
 
 }
 
-void loadGame( unsigned int * turn, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
+void deleGame( int save )
 {
 
-	cout << endl << "Loading Game." << endl;
+	string fileName = "slot" + to_string( save ) + ".zom";
+	remove( fileName.c_str() );
 
-	string fileName = "save.dat";
+}
+
+bool saveExist( string name )
+{
+	if ( ifstream( name ) )
+	{
+	     return true;
+	}
+	return false;
+}
+
+void loadGame( unsigned int * turn, int * save, Character ** player1, Character ** player2 ) throw ( fileNotOpened )
+{
+
+	cout << endl << "Loading Game..." << endl;
+
+	//Choose a save slot
+	cout << "Which game would you like to load?\n" << endl;
+
+	for( int i = 1; i <= 3; i++ )
+	{
+		string file = "slot" + to_string(i) + ".zom";
+		if( saveExist( file ) )
+		{
+			cout <<  to_string(i) + ". Slot " + to_string(i) + " - SAVE EXISTS\n";
+		}
+		else
+		{
+			cout << to_string(i) +  ". Slot " + to_string(i) + " - EMPTY\n";
+		}
+	}
+
+	string choiceString = "0";
+	cout << ">> ";
+	getline(cin, choiceString);
+
+	while( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
+	{
+		cout << "Not a valid save slot. Try again: " << endl;
+		getline(cin, choiceString);
+	}
+
+	*save = stoi( choiceString );
+	string fileName = "slot" + to_string( *save ) + ".zom";
 
 	//Create new file input stream
 	ifstream read;
@@ -230,10 +275,31 @@ void loadGame( unsigned int * turn, Character ** player1, Character ** player2 )
 
 }
 
-void newGame(Character ** player1, Character ** player2)
+void newGame(Character ** player1, Character ** player2, int * save )
 {
 	string buffer = "";
 	cout << endl << "Creating a new game..." << endl;
+
+	//Choose a save slot
+	cout << "Which file would you like to save to?\n"
+			"1. Slot 1\n"
+			"2. Slot 2\n"
+			"3. Slot 3\n" << endl;
+
+	string choiceString = "0";
+	cout << ">> ";
+	getline(cin, choiceString);
+
+	while( (choiceString != "1") && (choiceString != "2") && (choiceString != "3") )
+	{
+		cout << "Not a valid save slot. Try again: " << endl;
+		getline(cin, choiceString);
+	}
+
+	*save = stoi( choiceString );
+
+	cout << "Slot " << *save << " selected!" << endl;
+
 
 	setupCharacters(player1, player2);
 
@@ -272,14 +338,13 @@ void newGame(Character ** player1, Character ** player2)
 	cout << endl  << endl << endl << endl;;
 }
 
-void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters, unsigned int resTurn )
+void playGame( Character * player1, Character * player2, int * gameState, EncounterList * encounters, int save, unsigned int resTurn )
 {
-
 
 	static unsigned int gameTurn = resTurn;
 
 	//Start Turn Message
-	cout << "You've survived to turn: " << gameTurn + 1 << endl << endl << endl << endl << endl;
+	cout << "You've survived to turn: " << gameTurn + 1 << "\n\n" << endl;
 
 	//Player 1 Turn
 	cout << "<PLAYER 1>" << endl;
@@ -297,11 +362,13 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 	{
 		cout << "Player 1 has died. Player 2 wins!" << endl;
 		*gameState = 3;
+		return;
 	}
-	if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
+	else if( ( player2->getHealth() == 0 ) || ( player2->getSupplies() == 0 ) )
 	{
 		cout << "Player 2 has died. Player 1 wins!" << endl;
 		*gameState = 3;
+		return;
 	}
 
 	++gameTurn;
@@ -319,10 +386,14 @@ void playGame( Character * player1, Character * player2, int * gameState, Encoun
 		//Set gamestate to the ending state!
 		*gameState = 3;
 	}
+	else
+	{
+
+		saveGame( gameTurn, save, player1, player2 );
+
+	}
 
 	cout << endl << endl;
-
-	saveGame( gameTurn, player1, player2 );
 
 }
 
