@@ -159,6 +159,16 @@ CharacterList::CharacterList()
 	setupCharacters();
 }
 
+CharacterList::~CharacterList()
+{
+	int size = list.size();
+	int i = 0;
+
+	for (i = 0; i < size; i++) {
+		delete list[i];
+	}
+}
+
 void CharacterList::setupCharacters()
 {
 	//Here is where we can write all of the charcter information, and we'll only have to do it once
@@ -274,7 +284,6 @@ void CharacterList::setupCharacters()
 	
 	darwinArnold->addStory(10, "You see your secluded home a few hundred meters away. Sprinting the remainder of the way you feel your hope rise seeing majority of the animals still looking healthy. You run to the fence and shake the bell"
 		" longing to see your wife. You see her face appear from inside the lookout tower and you can help but yell her name 'Susan! I'm Here!'");
-
 }
 
 /*

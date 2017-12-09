@@ -47,6 +47,7 @@ void setupCharacters(Character ** player1, Character ** player2)
 	*player1 = NewPlayer1;
 	*player2 = NewPlayer2;
 
+	delete charList;
 }
 
 /*

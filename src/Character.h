@@ -91,6 +91,7 @@ class CharacterList
 	protected:
 	public:
 		CharacterList();
+		~CharacterList();
 		Character* chooseCharacter();
 		void displayCharacters();
 };
