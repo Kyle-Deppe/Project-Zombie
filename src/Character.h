@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Character {
+class ABCCharacter {
 protected:
 	string name;
 	int health;		//A number between 0-100
@@ -20,16 +20,35 @@ protected:
 	std::map<int, string> mainStory;		// I didn't use this. It might be useful but it seems like we can just hard code our stories.
 											// (See Character.cpp)
 public:
+	ABCCharacter() {}
+	~ABCCharacter() {}
+	virtual int getLuck() = 0;
+	virtual int getHealth() = 0;
+	virtual int getSupplies() = 0;
+	// virtual int getTurn() = 0;
+	virtual string getName() = 0;
+
+	virtual void addHealth(int number) = 0;
+	virtual void addSupplies(int number) = 0;
+	virtual void addLuck(int number) = 0;
+	virtual void showStory(int turnNumber) = 0;
+
+	virtual void addStory(int turn, string story) = 0;
+};
+
+class Character : protected ABCCharacter {
+protected:
+public:
 	Character() {}
 	Character( string _name, int _health, int _supplies, int _luck );
-	virtual ~Character();
+	~Character();
 
 	void printPlayerData();
 
 	int getLuck();
 	int getHealth();
 	int getSupplies();
-	int getTurn();
+	// int getTurn();
 	string getName();
 
 	void addHealth(int number);				// Input a negative number for subtraction. Auto sets to 0 or 100 for extreme values.
